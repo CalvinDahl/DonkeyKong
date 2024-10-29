@@ -1,0 +1,175 @@
+/* General Characteristics */
+:root{
+	--white: #FFF;
+	--darken: rgba(0,0,0,0.7);
+	--lightblue: #5D8AA8;
+	--darkblue: rgb(70, 130, 180);
+	--lightbrown: #c9b490;
+	--darkbrown: #674421;
+	--darkorange: #644117;
+	--bs-border-color: rgba(151,121,79,1);
+	--bs-body-color: #FFF;
+	--bs-body-striped-bg: rgba(158,127,86,0.9);
+	--bs-body-bg: rgba(156, 108, 52,0.9);
+}
+*{
+	--ideal-viewport-width: 1600;
+	--current-viewport-width: 100vw;
+	--ideal-font-size: 16;
+	font-size: calc(var(--ideal-font-size) * (var(--current-viewport-width) / var(--ideal-viewport-width)));
+}
+
+@font-face{
+	font-family: "Neuland";
+	src: url("includes/Fonts/Junglefever-4ZpD.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: "Biryani-Regular";
+    src: url("includes/Fonts/biryani/Biryani-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Biryani-Light";
+    src: url("includes/Fonts/biryani/Biryani-Light.otf") format("opentype");
+}
+body{
+	background-image: url("includes/images/Paper.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.container-fluid{
+	background: var(--darken);
+}
+/* NAV */
+.nav{
+	background-image: url("includes/images/Waterfall2.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.Nav-Worlds{
+	background: var(--lightblue);
+	border: 1px solid;
+	border-color: var(--bs-table-border-color);
+	border-radius: 1rem;
+	margin: 1vw 0.5vw 1vw 0.5vw;
+	padding: 0;
+	height: fit-content;
+	width: 100%;
+}
+
+.Nav-Worlds h2{
+	margin-top: 0.5rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	color: #f2f3f4;
+	font-weight: 1;
+	font-family:"Neuland";
+	letter-spacing: 0.1rem;
+	font-size: 1.1rem;
+	text-shadow: 0.1rem 0.1rem 0.15rem var(--darkorange), -0.1rem -0.1rem 0.15rem var(--darkorange), 0.1rem -0.1rem 0.15rem var(--darkorange), -0.1rem 0.1rem 0.15rem var(--darkorange);
+	text-align: center;
+}
+.Nav-Worlds ul{
+	text-align: left;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+.Nav-Worlds ul>li{
+	display: inline-block;
+	list-style: none;
+	font-weight: 1;
+	font-family:"Biryani-Light";
+	letter-spacing: 0.1rem;
+	font-size: 0.9rem;
+	text-indent: -1.5rem;
+	padding-left: 1.5rem;
+}
+.Nav-Worlds a{
+	text-decoration: none;
+	color: var(--white);
+}
+.Nav-Worlds a:hover{
+	color: var(--white);
+	text-decoration: underline;
+	font-family:"Biryani-Regular";
+}
+/* MAIN BODY */
+/* Title and Decorative Background*/
+.background{
+	background-image: url("includes/images/Test.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	padding-bottom: 5rem;
+}
+.background-table{
+	box-sizing: border-box;
+	width: 80%;
+	/*border: 1px solid var(--lightbrown);
+	background-color: var(--darkbrown);*/
+	
+}
+.background h1{
+	padding-top: 2vw;
+	color: #674421;
+	font-size: 5rem;
+	font-weight: 1000;
+	font-family:"Neuland";
+	letter-spacing: 0.0rem;
+	text-shadow: 0.1rem 0.1rem 0.1rem var(--lightbrown), -0.1rem -0.1rem 0.1rem var(--lightbrown), 0.1rem -0.1rem 0.1rem var(--lightbrown), -0.1rem 0.1rem 0.1rem var(--lightbrown);
+}
+/* Table Settings */
+.table{
+	background-image: url("includes/images/TableTexture.jpg");
+	background-repeat: repeat;
+	background-size: cover;
+	--bs-table-color: var(--bs-body-color);
+	border-color: var(--bs-table-border-color);
+	font-weight: 1;
+	font-family:"Biryani-Regular";
+	letter-spacing: 0.1rem;
+	box-shadow: 0.2rem 0.2rem 0.25rem var(--darkbrown), -0.2rem -0.2rem 0.25rem var(--darkbrown), 0.2rem -0.2rem 0.25rem var(--darkbrown), -0.2rem 0.2rem 0.25rem var(--darkbrown);
+}
+
+.table-striped>thead>tr:nth-child(odd)>th {
+	background-color:var(--bs-body-bg);
+	color: #f2f3f4;
+	font-weight: 1;
+	font-family:"Neuland";
+	letter-spacing: 0.1rem;
+	text-shadow: 0.1rem 0.1rem 0.15rem var(--darkorange), -0.1rem -0.1rem 0.15rem var(--darkorange), 0.1rem -0.1rem 0.15rem var(--darkorange), -0.1rem 0.1rem 0.15rem var(--darkorange);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    background-color:var(--bs-body-striped-bg);
+}
+
+.table-striped>tbody>tr:nth-of-type(even)>* {
+    background-color:var(--bs-body-bg);
+}
+/* Table Hover Property */
+.table-striped>tbody>tr:hover td:not(:first-child) {
+    background-color:var(--lightblue);
+}
+.table-striped>tbody>tr>td:nth-child(0):hover {
+    background-color:var(--lightblue);
+}
+.table-striped>thead>tr>th:hover {
+    background-color:var(--lightblue);
+}
+/* Table Link Properties */
+.table a{
+	text-decoration: none;
+	text-shadow: 0.01rem 0.01rem 0.15rem var(--darken), -0.01rem -0.01rem 0.15rem var(--darken), 0.01rem -0.01rem 0.05rem var(--darken), -0.01rem 0.01rem 0.15rem var(--darken);
+	
+}
+.table a:hover{
+	text-decoration: underline;
+	font-family:"Biryani-Regular";
+}
+/* Flag img settings */
+.flag {
+	width: 2.2rem;
+}

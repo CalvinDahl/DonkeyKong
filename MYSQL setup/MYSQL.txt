@@ -1,0 +1,12 @@
+CREATE Table upload ( 
+id INT(6) NOT NULL AUTO_INCREMENT,
+player VARCHAR(30) NOT NULL,
+nation VARCHAR(30) NOT NULL,
+level_id INT(3) NOT NULL,
+level_time TIME(2) NOT NULL,
+date_set DATE NOT NULL,
+kong_used VARCHAR(7) NOT NULL,
+video_link VARCHAR(255) NOT NULL, 
+PRIMARY KEY (id) );
+
+INSERT INTO upload (player, nation, level_id, level_time, date_set, kong_used, video_link) VALUES ('Crysto','ITALY',1,00:01:21.35,'2024-02-06',0,'https://www.youtube.com/watch?v=kFlKwLqplQY')
