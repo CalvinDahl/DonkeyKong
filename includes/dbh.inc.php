@@ -7,7 +7,7 @@
 	
 	$dbhost = $_SERVER['RDS_HOSTNAME'];
 	$dbport = $_SERVER['RDS_PORT'];
-	$dbname = $_SERVER['RDS_DB_NAME'];
+	$dbname = 'dkctf_database';
 	$charset = 'utf8mb3' ;
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
