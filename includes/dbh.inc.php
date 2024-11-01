@@ -1,4 +1,5 @@
 <?php
+	
 	define('DBHOST', getenv('DBHOST'));
 	define('RDSPORT', getenv('RDSPORT'));
 	define('DBUSER', getenv('DBUSER'));
