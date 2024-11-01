@@ -1,0 +1,4 @@
+SetEnv DBHOST "dkc-database.crqcoww6k3x3.us-east-2.rds.amazonaws.com"
+SetEnv RDSPORT "3306"
+SetEnv DB_USER "USERNAME_REMOVED"
+SetEnv DB_PASS "PASSWORD_REMOVED"

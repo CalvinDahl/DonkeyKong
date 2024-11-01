@@ -1,18 +1,17 @@
 <?php
-	/*
-	$dsn = "mysql:host=localhost;dbname=dkctf_database";
-	$dbusername = "root";
-	$dbpassword = "";
-	*/
+	define('DBHOST', getenv('DBHOST'));
+	define('RDSPORT', getenv('RDSPORT'));
+	define('DBUSER', getenv('DBUSER'));
+	define('DBPASS', getenv('DBPASS'));
 	
-	$dbhost = $_SERVER['RDS_HOSTNAME'];
-	$dbport = $_SERVER['RDS_PORT'];
+	$dbhost = DBHOST;
+	$dbport = RDSPORT;
 	$dbname = 'dkctf_database';
 	$charset = 'utf8mb3' ;
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
-	$username = $_SERVER['RDS_USERNAME'];
-	$password = $_SERVER['RDS_PASSWORD'];
+	$username = DBUSER;
+	$password = DBPASS;
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
