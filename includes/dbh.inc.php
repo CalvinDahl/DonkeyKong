@@ -11,8 +11,8 @@
 	$charset = 'utf8mb3' ;
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
-	$username = DBUSER;
-	$password = DBPASS;
+	$dbusername = DBUSER;
+	$dbpassword = DBPASS;
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
