@@ -1,13 +1,13 @@
 <?php
 
-	$dbhost = $_SERVER['RDS_HOSTNAME'];
-	$dbport = $_SERVER['RDS_PORT'];
-	$dbname = $_SERVER['RDS_DB_NAME'];
+	$dbhost = getenv(DBHOST);
+	$dbport = getenv(RDSPORT);
+	$dbname = 'dkctf_database';
 	$charset = 'utf8';
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
-	$dbusername = "USERNAME_REMOVED";
-	$dbpassword = "PASSWORD_REMOVED";
+	$dbusername = getenv(DBUSER);
+	$dbpassword =  getenv(DBPASS);
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
