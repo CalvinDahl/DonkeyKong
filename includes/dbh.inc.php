@@ -1,13 +1,12 @@
 <?php
 
-	$dbhost = "dkc-database.crqcoww6k3x3.us-east-2.rds.amazonaws.com";
-	$dbport = "3306";
+	$dbhost = "localhost";
 	$dbname = 'dkctf_database';
 	$charset = 'utf8';
 
-	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
-	$dbusername = "Inconclusion";
-	$dbpassword = "49BD925F9097B3FC8102451BCD30F826";
+	$dsn = "mysql:host={$dbhost};dbname={$dbname};charset={$charset}";
+	$dbusername = "mysql.infoschema";
+	$dbpassword = "xkcs*IAUP-X6US4w";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
