@@ -2,7 +2,7 @@
 
 function decode_data_nation($nation){
 	if($nation != "AA"){
-		$path = 'country-flags-main/svg/'.$nation.'.svg';
+		$path = 'country-flags-main/svg/'.strtolower($nation).'.svg';
 		return '<img class = "flag" src='.$path.'>';
 	} else return "";
 }
