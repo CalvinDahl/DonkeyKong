@@ -1,13 +1,13 @@
 <?php
 
-	$dbhost = getenv('DBHOST');
-	$dbport = getenv('RDSPORT');
+	$dbhost = "dkc-database.crqcoww6k3x3.us-east-2.rds.amazonaws.com";
+	$dbport = "3306";
 	$dbname = 'dkctf_database';
 	$charset = 'utf8';
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
-	$dbusername = getenv('DBUSER');
-	$dbpassword =  getenv('DBPASS');
+	$dbusername = "Inconclusion";
+	$dbpassword = "49BD925F9097B3FC8102451BCD30F826";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
