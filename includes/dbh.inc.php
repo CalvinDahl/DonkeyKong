@@ -1,8 +1,8 @@
 <?php
 
-	$dbhost = "dkc-database.crqcoww6k3x3.us-east-2.rds.amazonaws.com";
-	$dbport = "3306";
-	$dbname = 'dkctf_database';
+	$dbhost = $_SERVER['RDS_HOSTNAME'];
+	$dbport = $_SERVER['RDS_PORT'];
+	$dbname = $_SERVER['RDS_DB_NAME'];
 	$charset = 'utf8';
 
 	$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
