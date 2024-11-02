@@ -1,12 +1,11 @@
 <?php
 
-	$dbhost = "localhost";
+	$dbhost = 'localhost';
 	$dbname = 'dkctf_database';
-	$charset = 'utf8';
-
-	$dsn = "mysql:host={$dbhost};dbname={$dbname};charset={$charset}";
-	$dbusername = "USERNAME_REMOVED";
-	$dbpassword = "PASSWORD_REMOVED";
+	
+	$dsn = 'mysql:host=localhost;dbname=dkctf_database';
+	$dbusername = 'USERNAME_REMOVED';
+	$dbpassword = 'PASSWORD_REMOVED';
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
