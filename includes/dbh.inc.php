@@ -4,8 +4,8 @@
 	$dbname = 'dkctf_database';
 	
 	$dsn = 'mysql:host=localhost;dbname=dkctf_database';
-	$dbusername = 'USERNAME_REMOVED';
-	$dbpassword = 'PASSWORD_REMOVED';
+	$dbusername = "root";
+	$dbpassword = "PASSWORD_REMOVED";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
