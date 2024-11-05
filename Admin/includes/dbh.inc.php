@@ -1,8 +1,8 @@
 <?php
 
 	$dsn = 'mysql:host=localhost;dbname=dkctf_database';
-	$dbusername = getenv('DBUSER');
-	$dbpassword = getenv('DBPASS');
+	$dbusername = "Inconclusion";
+	$dbpassword = "49BD925F9097B3FC8102451BCD30F826";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
