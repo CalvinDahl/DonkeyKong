@@ -1,4 +1,2 @@
-SetEnv DBHOST "dkc-database.crqcoww6k3x3.us-east-2.rds.amazonaws.com"
-SetEnv RDSPORT "3306"
 SetEnv DBUSER "Inconclusion"
 SetEnv DBPASS "49BD925F9097B3FC8102451BCD30F826"
