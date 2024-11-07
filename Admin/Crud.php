@@ -1,9 +1,7 @@
 <?php
 	require_once 'includes/config_session.inc.php';
-	$_SESSION['user_id'] = "hello";
-	var_dump($_SESSION['user_id']);
-	if(isset($_SESSION['user_id'])){
-		var_dump($_SESSION['user_id']);
+	
+	if(!isset($_SESSION['user_id'])){
 		header("location:LoginDisplay.php");
 	}
 ?>
