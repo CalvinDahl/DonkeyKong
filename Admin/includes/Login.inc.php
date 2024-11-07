@@ -27,6 +27,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$errors["login_incorrect"] = "Incorrect login info!";
 		}
 		
+		require_once 'config_session.inc.php';
+		
+		if(($errors['empty_input'] == "") && ($errors['login_incorrect'] == "")){
+			$_SESSION['user_id'] = $username;
+		}
+		
 		echo json_encode($errors);
 		
 		
