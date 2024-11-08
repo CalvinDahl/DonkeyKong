@@ -5,7 +5,8 @@
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Tropical Freeze</title>
+	<title>Donkey Kong Tropical Freeze World Records</title>
+	<link rel="icon" href="includes/images/Favicon.png" type="image/x-icon">
 	
 	<link href="DataTables/datatables.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="Styles.css">
