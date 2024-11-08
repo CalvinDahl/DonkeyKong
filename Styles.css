@@ -1,7 +1,7 @@
 /* General Characteristics */
 :root{
 	--white: #FFF;
-	--darken: rgba(0,0,0,0.7);
+	--darken: rgba(0,0,0,0.5);
 	--lightblue: #5D8AA8;
 	--darkblue: rgb(70, 130, 180);
 	--lightbrown: #c9b490;
@@ -37,8 +37,8 @@
     src: url("includes/Fonts/biryani/Biryani-Light.otf") format("opentype");
 }
 body{
-	background-image: url("includes/images/Paper.jpg");
-	background-repeat: no-repeat;
+	background-image: url("includes/images/Clouds.png");
+	background-attachment: fixed;
 	background-size: 100% 100%;
 }
 .container-fluid{
