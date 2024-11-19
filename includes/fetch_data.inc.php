@@ -5,17 +5,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		require_once "dbh.inc.php";
 		require_once "fetch_data_contr.inc.php";
 		
+		$gamemode = "funky";
 		$count_all_rows = $pdo->query('select count(*) from upload')->fetchColumn();
 		$filtered_rows = $count_all_rows;
 		
-		$query = "SELECT *
-		FROM
-		(
-		SELECT *, MIN(level_time) OVER (PARTITION BY level_id
-			ORDER BY date_set ASC) AS min_time FROM upload
-		)X
-		WHERE level_time = min_time";	
-		
+		if($gamemode == "original"){
+			$query = "SELECT *
+			FROM
+			(
+			SELECT *, MIN(level_time) OVER (PARTITION BY level_id
+				ORDER BY date_set ASC) AS min_time FROM upload WHERE kong_used != 'Funky'
+			)X
+			WHERE level_time = min_time";
+		}else if($gamemode == "funky"){
+			$query = "SELECT *
+			FROM
+			(
+			SELECT *, MIN(level_time) OVER (PARTITION BY level_id
+				ORDER BY date_set ASC) AS min_time FROM upload
+			)X
+			WHERE level_time = min_time";
+		}
 		$stmt = $pdo->prepare($query); 
 		$stmt->execute();
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$subarray[] = $row['player'];
 			$subarray[] = decode_data_nation($row['nation']);
 			$subarray[] = $row['date_set'];
-			$subarray[] = $row['kong_used'];
+			$subarray[] = decode_data_kong_used($row['kong_used']);
 			$subarray[] = decode_data_video_link($row['video_link'],$row['level_time']);
 			$data[]= $subarray;
 		}
@@ -38,7 +48,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			'recordsTotal'=>$count_all_rows,
 			'recordsFiltered'=>$filtered_rows,
 			'data'=>$data,
-			'query'=>$query
 		);
 		
 		echo json_encode($output);

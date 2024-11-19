@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Donkey Kong Tropical Freeze World Records</title>
+	<meta name="description" content="Site Dedicated to Documenting Current and Previous World Records for Donkey Kong Country Tropical Freeze">
 	<link rel="icon" href="includes/images/Favicon.png" type="image/x-icon">
 	
 	<link href="DataTables/datatables.min.css" rel="stylesheet">
@@ -129,7 +130,7 @@
 							</ul>
 						</div>
 						<center>
-								<img src="includes/images/Splash.png" style='width:105%; object-fit: contain; margin: 0.5rem; margin-bottom: -18%'>
+							<img src="includes/images/Splash.png" style='width:105%; object-fit: contain; margin: 0.5rem; margin-bottom: -18%'>
 						</center>
 					</div>
 					
@@ -149,6 +150,40 @@
 									<tbody></tbody>
 								</table>
 							</span>
+						</div>
+					</div>
+				</div>
+				<div class = "row TreeBackdrop">
+					<img style="margin:0; padding:0;" src="includes/images/TreeBackdrop.png">
+				</div>
+				<div class = "row Footer">
+					<div class="footer-contents">
+						<h1 class="text-center">Multiple World Record Holders</h1>
+						<div class = "row justify-content-center">
+							<div class="col-5">
+								<span class="background-table">
+									<table id="multiple-records" class="table table-striped">
+										<thead>
+											<th>Player</th>
+											<th>Nation</th>
+											<th>WR's</th>
+										</thead>
+										<tbody></tbody>
+									</table>
+								</span>
+							</div>
+							<div class ="col-1"></div>
+							<div class="col-4">
+								<span class="background-table">
+									<table id="nation-records" class="table table-striped">
+										<thead>
+											<th>Nation</th>
+											<th>WR's</th>
+										</thead>
+										<tbody></tbody>
+									</table>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -179,8 +214,8 @@
 				$(nRow).attr('id',aData[0]);
 			},
 			"drawCallback": function(settings) {
-				console.log(settings.json)
 				MergeGridCells('leaderboard',[1]);
+				SubDataTable(settings.json)
 			   //do whatever  
 			},
 			'columnDefs':[
@@ -230,8 +265,74 @@
 			  }
 			});
 		  }
-		} 
-		
+		}
+		//FOOTER TABLES
+		function SubDataTable(Table){
+			var names = [];
+			var nations = [];
+			Table.data.forEach((row) => {
+				names.push(row[1]);
+				nations.push(row[2]);
+			});
+			var player_count = names.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
+			var player_array = Object.entries(player_count);
+			player_array.forEach((col) => {
+				let index = player_array.indexOf(col);
+				for(var row of Table.data){
+					if (col[0] == row[1]){
+						player_array[index].splice(1,0,row[2]);
+						break;
+					}
+				};
+			});
+			player_array = player_array.sort((a, b) => b[2] - a[2]);
+			console.log(player_array);
+			
+			var nation_count = nations.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
+			var nation_array = Object.entries(nation_count);
+			for (var col of nation_array){
+				let index = nation_array.indexOf(col);
+				if(col[0] == ""){
+					nation_array.splice(index,1);
+					break;
+				}
+			};
+			nation_array = nation_array.sort((a, b) => b[2] - a[2]);
+			
+			//Multiple Record Holders Table
+			$('#multiple-records').DataTable({
+				'paging':false,
+				'searching':false,
+				'lengthChange':false,
+				'info':false,
+				'order':[],
+				columns: [
+					{ title: 'Player' },
+					{ title: 'Nation' },
+					{ title: "WR's" },
+				],
+				data: player_array,
+				'columnDefs':[
+					{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
+				]
+			});
+			//Nation Record Holders Table
+			$('#nation-records').DataTable({
+				'paging':false,
+				'searching':false,
+				'lengthChange':false,
+				'info':false,
+				'order':[],
+				columns: [
+					{ title: 'Nation' },
+					{ title: "WR's" },
+				],
+				data: nation_array,
+				'columnDefs':[
+					{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
+				]
+			});
+		}
 		//Download CSV
 		$(document).on('click','#DownloadCSV',function(event){
 			$.ajax({
@@ -252,6 +353,7 @@
 				}
 			});
 		});
+		
 	</script>
 </body>
 </html>
