@@ -23,3 +23,7 @@ function decode_data_video_link($video_link,$level_time) {
 		return $level_time;
 	} else return '<a href="'.$video_link.'" target="_blank">'.$level_time.'</a>';
 }
+function decode_data_kong_used($kong_used){
+	$path = 'includes/images/'.($kong_used).'.png';
+	return '<img class = "kong_barrel" src='.$path.'>';
+}

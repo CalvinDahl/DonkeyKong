@@ -97,6 +97,22 @@ body{
 	text-decoration: underline;
 	font-family:"Biryani-Regular";
 }
+/* FOOTER */
+.TreeBackdrop{
+	object-fit: contain;
+}
+.footer-contents{
+	margin-top: -4rem;
+	padding-bottom: 4rem;
+	background-color: #000;
+}
+.Footer h1{
+	color: var(--gold);
+	font-size: 3rem;
+	font-weight: 1000;
+	font-family:"Neuland";
+	letter-spacing: 0.1rem;
+}
 /* MAIN BODY */
 /* Title and Decorative Background*/
 .background{
@@ -104,6 +120,7 @@ body{
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	padding-bottom: 5rem;
+	margin-bottom: 2rem;
 }
 .background-table{
 	box-sizing: border-box;
@@ -173,4 +190,7 @@ body{
 /* Flag img settings */
 .flag {
 	width: 2.2rem;
+}
+.kong_barrel {
+	width: 1.4rem;
 }
