@@ -189,8 +189,17 @@ body{
 }
 /* Flag img settings */
 .flag {
-	width: 2.2rem;
+	width: 2.2em;
 }
 .kong_barrel {
-	width: 1.4rem;
+	width: 1.4em;
+}
+
+@media (max-width: 600px) {
+	.flag {
+		width: 4em;
+	}
+	.kong_barrel {
+		width: 2.8em;
+	}
 }
