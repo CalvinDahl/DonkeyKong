@@ -13,16 +13,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$query = "SELECT *
 			FROM
 			(
-			SELECT *, MIN(level_time) OVER (PARTITION BY level_id
-				ORDER BY date_set ASC) AS min_time FROM upload WHERE kong_used != 'Funky'
+			SELECT *,
+			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
+			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank
+			FROM upload WHERE kong_used != 'Funky'
 			)X
 			WHERE level_time = min_time";
 		}else if($gamemode == "funky"){
 			$query = "SELECT *
 			FROM
 			(
-			SELECT *, MIN(level_time) OVER (PARTITION BY level_id
-				ORDER BY date_set ASC) AS min_time FROM upload
+			SELECT *,
+			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
+			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank
+			FROM upload
 			)X
 			WHERE level_time = min_time";
 		}
