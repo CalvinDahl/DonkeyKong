@@ -26,91 +26,91 @@
 						<div class="Nav-Worlds">
 							<h2>World 1: Lost Mangroves</h2>
 							<ul>
-								<li><a href="subpage.php?id=101&name=Mangrove Cove" target="_blank">1-1: Mangrove Cove</a></li>
-								<li><a href="subpage.php?id=102&name=Shipwreck Shore" target="_blank">1-2: Shipwreck Shore</a></li>
-								<li><a href="subpage.php?id=103&name=Canopy Chaos" target="_blank">1-3: Canopy Chaos</a></li>
-								<li><a href="subpage.php?id=104&name=Trunk Twister" target="_blank">1-4: Trunk Twister</a></li>
-								<li><a href="subpage.php?id=105&name=Zip-Line Shrine" target="_blank">1-A: Zip-Line Shrine</a></li>
-								<li><a href="subpage.php?id=106&name=Busted Bayou" target="_blank">1-B: Busted Bayou</a></li>
-								<li><a href="subpage.php?id=107&name=Swinger Flinger" target="_blank">1-K: Swinger Flinger</a></li>
-								<li><a href="subpage.php?id=108&name=Big Top Bop" target="_blank">1-Boss: Big Top Bop</a></li>
+								<li><a href="subpage.php?id=101&name=Mangrove Cove">1-1: Mangrove Cove</a></li>
+								<li><a href="subpage.php?id=102&name=Shipwreck Shore">1-2: Shipwreck Shore</a></li>
+								<li><a href="subpage.php?id=103&name=Canopy Chaos">1-3: Canopy Chaos</a></li>
+								<li><a href="subpage.php?id=104&name=Trunk Twister">1-4: Trunk Twister</a></li>
+								<li><a href="subpage.php?id=105&name=Zip-Line Shrine">1-A: Zip-Line Shrine</a></li>
+								<li><a href="subpage.php?id=106&name=Busted Bayou">1-B: Busted Bayou</a></li>
+								<li><a href="subpage.php?id=107&name=Swinger Flinger">1-K: Swinger Flinger</a></li>
+								<li><a href="subpage.php?id=108&name=Big Top Bop">1-Boss: Big Top Bop</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
 							<h2>World 2: Autumn Heights</h2>
 							<ul>
-								<li><a href="subpage.php?id=201&name=Windmill Hills" target="_blank">2-1: Windmill Hills</a></li>
-								<li><a href="subpage.php?id=202&name=Mountain Mania" target="_blank">2-2: Mountain Mania</a></li>
-								<li><a href="subpage.php?id=203&name=Horn Top Hop" target="_blank">2-3: Horn Top Hop</a></li>
-								<li><a href="subpage.php?id=204&name=Sawmill Thrill" target="_blank">2-4: Sawmill Thrill</a></li>
-								<li><a href="subpage.php?id=205&name=Alpine Incline" target="_blank">2-5: Alpine Incline</a></li>
-								<li><a href="subpage.php?id=206&name=Wing Ding" target="_blank">2-6: Wing Ding</a></li>
-								<li><a href="subpage.php?id=207&name=Crumble Cavern" target="_blank">2-A: Crumble Cavern</a></li>
-								<li><a href="subpage.php?id=208&name=Rodent Ruckus" target="_blank">2-B: Rodent Ruckus</a></li>
-								<li><a href="subpage.php?id=209&name=Bopopolis" target="_blank">2-K: Bopopolis</a></li>
-								<li><a href="subpage.php?id=210&name=Mountaintop Tussle" target="_blank">2-Boss: Mountaintop Tussle</a></li>
+								<li><a href="subpage.php?id=201&name=Windmill Hills">2-1: Windmill Hills</a></li>
+								<li><a href="subpage.php?id=202&name=Mountain Mania">2-2: Mountain Mania</a></li>
+								<li><a href="subpage.php?id=203&name=Horn Top Hop">2-3: Horn Top Hop</a></li>
+								<li><a href="subpage.php?id=204&name=Sawmill Thrill">2-4: Sawmill Thrill</a></li>
+								<li><a href="subpage.php?id=205&name=Alpine Incline">2-5: Alpine Incline</a></li>
+								<li><a href="subpage.php?id=206&name=Wing Ding">2-6: Wing Ding</a></li>
+								<li><a href="subpage.php?id=207&name=Crumble Cavern">2-A: Crumble Cavern</a></li>
+								<li><a href="subpage.php?id=208&name=Rodent Ruckus">2-B: Rodent Ruckus</a></li>
+								<li><a href="subpage.php?id=209&name=Bopopolis">2-K: Bopopolis</a></li>
+								<li><a href="subpage.php?id=210&name=Mountaintop Tussle">2-Boss: Mountaintop Tussle</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
 							<h2>World 3: Bright Savannah</h2>
 							<ul>
-								<li><a href="subpage.php?id=301&name=Grassland Groove" target="_blank">3-1: Grassland Groove</a></li>
-								<li><a href="subpage.php?id=302&name=Baobab Bonanza" target="_blank">3-2: Baobab Bonanza</a></li>
-								<li><a href="subpage.php?id=303&name=Frantic Fields" target="_blank">3-3: Frantic Fields</a></li>
-								<li><a href="subpage.php?id=304&name=Scorch 'n' Torch" target="_blank">3-4: Scorch 'n' Torch</a></li>
-								<li><a href="subpage.php?id=305&name=Twilight Terror" target="_blank">3-5: Twilight Terror</a></li>
-								<li><a href="subpage.php?id=306&name=Cannon Canyon" target="_blank">3-6: Cannon Canyon</a></li>
-								<li><a href="subpage.php?id=307&name=Rickety Rafters" target="_blank">3-A: Rickety Rafters</a></li>
-								<li><a href="subpage.php?id=308&name=Bramble Scramble" target="_blank">3-B: Bramble Scramble</a></li>
-								<li><a href="subpage.php?id=309&name=Precarious Pendulums" target="_blank">3-K: Precarious Pendulums</a></li>
-								<li><a href="subpage.php?id=310&name=Triple Trouble" target="_blank">3-Boss: Triple Trouble</a></li>
+								<li><a href="subpage.php?id=301&name=Grassland Groove">3-1: Grassland Groove</a></li>
+								<li><a href="subpage.php?id=302&name=Baobab Bonanza">3-2: Baobab Bonanza</a></li>
+								<li><a href="subpage.php?id=303&name=Frantic Fields">3-3: Frantic Fields</a></li>
+								<li><a href="subpage.php?id=304&name=Scorch 'n' Torch">3-4: Scorch 'n' Torch</a></li>
+								<li><a href="subpage.php?id=305&name=Twilight Terror">3-5: Twilight Terror</a></li>
+								<li><a href="subpage.php?id=306&name=Cannon Canyon">3-6: Cannon Canyon</a></li>
+								<li><a href="subpage.php?id=307&name=Rickety Rafters">3-A: Rickety Rafters</a></li>
+								<li><a href="subpage.php?id=308&name=Bramble Scramble">3-B: Bramble Scramble</a></li>
+								<li><a href="subpage.php?id=309&name=Precarious Pendulums">3-K: Precarious Pendulums</a></li>
+								<li><a href="subpage.php?id=310&name=Triple Trouble">3-Boss: Triple Trouble</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
 							<h2>World 4: Sea Breeze Cove</h2>
 							<ul>
-								<li><a href="subpage.php?id=401&name=Deep Keep" target="_blank">4-1: Deep Keep</a></li>
-								<li><a href="subpage.php?id=402&name=High Tide Ride" target="_blank">4-2: High Tide Ride</a></li>
-								<li><a href="subpage.php?id=403&name=Amiss Abyss" target="_blank">4-3: Amiss Abyss</a></li>
-								<li><a href="subpage.php?id=404&name=Irate Eight" target="_blank">4-4: Irate Eight</a></li>
-								<li><a href="subpage.php?id=405&name=Sea Stack Attack" target="_blank">4-5: Sea Stack Attack</a></li>
-								<li><a href="subpage.php?id=406&name=Current Capers" target="_blank">4-6: Current Capers</a></li>
-								<li><a href="subpage.php?id=407&name=Rockin' Relics" target="_blank">4-A: Rockin' Relics</a></li>
-								<li><a href="subpage.php?id=408&name=Shoal Atoll" target="_blank">4-B: Shoal Atoll</a></li>
-								<li><a href="subpage.php?id=409&name=Spinning Spines" target="_blank">4-K: Spinning Spines</a></li>
-								<li><a href="subpage.php?id=410&name=Fugu Face-Off" target="_blank">4-Boss: Fugu Face-Off</a></li>
+								<li><a href="subpage.php?id=401&name=Deep Keep">4-1: Deep Keep</a></li>
+								<li><a href="subpage.php?id=402&name=High Tide Ride">4-2: High Tide Ride</a></li>
+								<li><a href="subpage.php?id=403&name=Amiss Abyss">4-3: Amiss Abyss</a></li>
+								<li><a href="subpage.php?id=404&name=Irate Eight">4-4: Irate Eight</a></li>
+								<li><a href="subpage.php?id=405&name=Sea Stack Attack">4-5: Sea Stack Attack</a></li>
+								<li><a href="subpage.php?id=406&name=Current Capers">4-6: Current Capers</a></li>
+								<li><a href="subpage.php?id=407&name=Rockin' Relics">4-A: Rockin' Relics</a></li>
+								<li><a href="subpage.php?id=408&name=Shoal Atoll">4-B: Shoal Atoll</a></li>
+								<li><a href="subpage.php?id=409&name=Spinning Spines">4-K: Spinning Spines</a></li>
+								<li><a href="subpage.php?id=410&name=Fugu Face-Off">4-Boss: Fugu Face-Off</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
 							<h2>World 5: Juicy Jungle</h2>
 							<ul>
-								<li><a href="subpage.php?id=501&name=Harvest Hazards" target="_blank">5-1: Harvest Hazards</a></li>
-								<li><a href="subpage.php?id=502&name=Reckless Ride" target="_blank">5-2: Reckless Ride</a></li>
-								<li><a href="subpage.php?id=503&name=Fruity Factory" target="_blank">5-3: Fruity Factory</a></li>
-								<li><a href="subpage.php?id=504&name=Panicky Paddles" target="_blank">5-4: Panicky Paddles</a></li>
-								<li><a href="subpage.php?id=505&name=Jelly Jamboree" target="_blank">5-5: Jelly Jamboree</a></li>
-								<li><a href="subpage.php?id=506&name=Frosty Fruits" target="_blank">5-6: Frosty Fruits</a></li>
-								<li><a href="subpage.php?id=507&name=Beehive Brawl" target="_blank">5-A: Beehive Brawl</a></li>
-								<li><a href="subpage.php?id=508&name=Jammin' Jams" target="_blank">5-B: Jammin' Jams</a></li>
-								<li><a href="subpage.php?id=509&name=Platform Problems" target="_blank">5-K: Platform Problems</a></li>
-								<li><a href="subpage.php?id=510&name=Punch Bowl" target="_blank">5-Boss: Punch Bowl</a></li>
+								<li><a href="subpage.php?id=501&name=Harvest Hazards">5-1: Harvest Hazards</a></li>
+								<li><a href="subpage.php?id=502&name=Reckless Ride">5-2: Reckless Ride</a></li>
+								<li><a href="subpage.php?id=503&name=Fruity Factory">5-3: Fruity Factory</a></li>
+								<li><a href="subpage.php?id=504&name=Panicky Paddles">5-4: Panicky Paddles</a></li>
+								<li><a href="subpage.php?id=505&name=Jelly Jamboree">5-5: Jelly Jamboree</a></li>
+								<li><a href="subpage.php?id=506&name=Frosty Fruits">5-6: Frosty Fruits</a></li>
+								<li><a href="subpage.php?id=507&name=Beehive Brawl">5-A: Beehive Brawl</a></li>
+								<li><a href="subpage.php?id=508&name=Jammin' Jams">5-B: Jammin' Jams</a></li>
+								<li><a href="subpage.php?id=509&name=Platform Problems">5-K: Platform Problems</a></li>
+								<li><a href="subpage.php?id=510&name=Punch Bowl">5-Boss: Punch Bowl</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
 							<h2>World 6: Donkey Kong Island</h2>
 							<ul>
-								<li><a href="subpage.php?id=601&name=Homecoming Hijinxs" target="_blank">6-1: Homecoming Hijinxs</a></li>
-								<li><a href="subpage.php?id=602&name=Seashore War" target="_blank">6-2: Seashore War</a></li>
-								<li><a href="subpage.php?id=603&name=Aqueduct Assault" target="_blank">6-3: Aqueduct Assault</a></li>
-								<li><a href="subpage.php?id=604&name=Blurry Flurry" target="_blank">6-4: Blurry Flurry</a></li>
-								<li><a href="subpage.php?id=605&name=Forest Folly" target="_blank">6-5: Forest Folly</a></li>
-								<li><a href="subpage.php?id=606&name=Cliffside Slide" target="_blank">6-6: Cliffside Slide</a></li>
-								<li><a href="subpage.php?id=607&name=Frozen Frenzy" target="_blank">6-7: Frozen Frenzy</a></li>
-								<li><a href="subpage.php?id=608&name=Meltdown Mayhem" target="_blank">6-8: Meltdown Mayhem</a></li>
-								<li><a href="subpage.php?id=609&name=Dynamite Dash" target="_blank">6-A: Dynamite Dash</a></li>
-								<li><a href="subpage.php?id=610&name=Icicle Arsenal" target="_blank">6-B: Icicle Arsenal</a></li>
-								<li><a href="subpage.php?id=611&name=Slippy Spikes" target="_blank">6-K: Slippy Spikes</a></li>
-								<li><a href="subpage.php?id=612&name=Volcano Dome" target="_blank">6-Boss: Volcano Dome</a></li>
+								<li><a href="subpage.php?id=601&name=Homecoming Hijinxs">6-1: Homecoming Hijinxs</a></li>
+								<li><a href="subpage.php?id=602&name=Seashore War">6-2: Seashore War</a></li>
+								<li><a href="subpage.php?id=603&name=Aqueduct Assault">6-3: Aqueduct Assault</a></li>
+								<li><a href="subpage.php?id=604&name=Blurry Flurry">6-4: Blurry Flurry</a></li>
+								<li><a href="subpage.php?id=605&name=Forest Folly">6-5: Forest Folly</a></li>
+								<li><a href="subpage.php?id=606&name=Cliffside Slide">6-6: Cliffside Slide</a></li>
+								<li><a href="subpage.php?id=607&name=Frozen Frenzy">6-7: Frozen Frenzy</a></li>
+								<li><a href="subpage.php?id=608&name=Meltdown Mayhem">6-8: Meltdown Mayhem</a></li>
+								<li><a href="subpage.php?id=609&name=Dynamite Dash">6-A: Dynamite Dash</a></li>
+								<li><a href="subpage.php?id=610&name=Icicle Arsenal">6-B: Icicle Arsenal</a></li>
+								<li><a href="subpage.php?id=611&name=Slippy Spikes">6-K: Slippy Spikes</a></li>
+								<li><a href="subpage.php?id=612&name=Volcano Dome">6-Boss: Volcano Dome</a></li>
 							</ul>
 						</div>
 						<div class="Nav-Worlds">
