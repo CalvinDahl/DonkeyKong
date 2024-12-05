@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			(
 			SELECT *,
 			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
-			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank
+			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank_partition
 			FROM upload WHERE kong_used != 'Funky'
 			)X
 			WHERE level_time = min_time";
@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			(
 			SELECT *,
 			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
-			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank
+			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank_partition
 			FROM upload
 			)X
 			WHERE level_time = min_time";
