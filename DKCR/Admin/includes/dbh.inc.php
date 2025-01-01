@@ -1,7 +1,8 @@
 <?php
-	$dsn = "mysql:host=localhost;dbname=dkcr_database";
-	$dbusername = "root";
-	$dbpassword = "";
+
+	$dsn = 'mysql:host=localhost;dbname=dkcr_database';
+	$dbusername = "Inconclusion";
+	$dbpassword = "49BD925F9097B3FC8102451BCD30F826";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
