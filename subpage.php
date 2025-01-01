@@ -15,6 +15,15 @@
 <body>
 	<div class="container-fluid overflow-hidden">
 		<div class="row" style="margin-top: 0.5rem">
+			<div class = "header">
+				<b>
+					[
+					<a href=".">DKCTF</a>
+					|
+					<a href="DKCR/dkcr.php">DKCR_HD</a>
+					]
+				</b>
+			</div>
 			<div class = "container">
 				<div class = "row flex-row flex-nowrap align-items-start">
 					<div class="nav col-3 col-md-2">

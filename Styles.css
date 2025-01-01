@@ -1,6 +1,7 @@
 /* General Characteristics */
 :root{
 	--white: #FFF;
+	--black: #000;
 	--darken: rgba(0,0,0,0.5);
 	--lightblue: #5D8AA8;
 	--darkblue: rgb(70, 130, 180);
@@ -47,6 +48,22 @@ body{
 }
 .container-fluid{
 	background: var(--darken);
+}
+/* Header */
+.header b{
+	font-size: 1.4rem;
+	color: var(--black);
+}
+.header a{
+	font-size: 1.2rem;
+	text-decoration: none;
+	color: var(--gold);
+	text-shadow: 0.01rem 0.01rem 0.15rem var(--darken), -0.01rem -0.01rem 0.15rem var(--darken), 0.01rem -0.01rem 0.15rem var(--darken), -0.01rem 0.01rem 0.15rem var(--darken);
+}
+.header a:hover{
+	font-size: 1.25rem;
+	color: var(--white);
+	text-decoration: underline;
 }
 /* NAV */
 .nav{
