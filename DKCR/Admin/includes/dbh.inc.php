@@ -1,7 +1,8 @@
 <?php
-	$dsn = "mysql:host=localhost;dbname=dkcr_database";
-	$dbusername = "root";
-	$dbpassword = "";
+
+	$dsn = 'mysql:host=localhost;dbname=dkcr_database';
+	$dbusername = "USERNAME_REMOVED";
+	$dbpassword = "PASSWORD_REMOVED";
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
