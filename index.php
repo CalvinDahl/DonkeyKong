@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Donkey Kong Tropical Freeze World Records</title>
+	<title>Donkey Kong Country Tropical Freeze World Records</title>
 	<meta name="description" content="Site Dedicated to Documenting Current and Previous World Records for Donkey Kong Country Tropical Freeze">
 	<link rel="icon" href="includes/images/Favicon.png" type="image/x-icon">
 	
