@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$count_all_rows = $pdo->query('select count(*) from users')->fetchColumn();
 		$filtered_rows = $count_all_rows;
 		
-		$query = "SELECT username, Contributions FROM users ORDER BY Contributions ASC";
+		$query = "SELECT username, Contributions FROM users ORDER BY Contributions DESC";
 		$stmt = $pdo->prepare($query);
 		$stmt->execute();
 		
