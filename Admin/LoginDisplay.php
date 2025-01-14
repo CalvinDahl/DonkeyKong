@@ -36,6 +36,20 @@
 					<button type="button" style="margin-bottom: 20px;" class="btn btn-primary loginBtn">Login</button>
 				</div>
 			</div>
+			<div class="mb-3 row"></div>
+			<h3 class="text-center">Big Thanks To Our Updaters!</h3>
+			<div class="mb-3 row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<table id="updaterTable" class="table table-striped">
+						<thead>
+							<th>Updater</th>
+							<th>Contributions</th>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>
@@ -57,6 +71,27 @@
 					} else alert(empty);
 				}
 			});
+		});
+		//Updater Table Initialization
+		$('#updaterTable').DataTable({
+			'serverSide':true,
+			'processing':true,
+			'paging':false,
+			'searching':false,
+			'lengthChange':false,
+			'info':false,
+			'order':[],
+			'ajax':{
+				'url':'includes/fetch_updater_data.inc.php',
+				'type':'post',
+			},
+			'fnCreatedRow':function(nRow,aData,iDataIndex)
+			{
+				$(nRow).attr('id',aData[0]);
+			},
+			'columnDefs':[
+				{'target':"_all",'className':'text-center align-middle','orderable':false,'searchable':false},
+			]
 		});
 	</script>
 </body>
