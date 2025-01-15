@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		require_once 'config_session.inc.php';
 		if(isset($_SESSION['user_id'])){
 			$username = $_SESSION['user_id'];
-			$query = 'UPDATE Users SET Contributions = Contributions + 1 WHERE username = :username;';
+			$query = 'UPDATE users SET Contributions = Contributions + 1 WHERE username = :username;';
 			$stmt = $pdo->prepare($query);
 			
 			$stmt->bindParam(":username", $username);
