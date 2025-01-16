@@ -124,7 +124,6 @@
 								<li><a href="subpage.php?id=705&name=Cog Jog">7-5: Cog Jog</a></li>
 								<li><a href="subpage.php?id=706&name=Switcheroo">7-6: Switcheroo</a></li>
 								<li><a href="subpage.php?id=707&name=Music Madness">7-7: Music Madness</a></li>
-								<li><a href="subpage.php?id=708&name=Lift-Off Launch">7-R: Lift-Off Launch</a></li>
 								<li><a href="subpage.php?id=709&name=Treacherous Track">7-K: Treacherous Track</a></li>
 								<li><a href="subpage.php?id=710&name=Feather Fiend">7-Boss: Feather Fiend</a></li>
 							</ul>
@@ -331,7 +330,7 @@
 					break;
 				}
 			};
-			nation_array = nation_array.sort((a, b) => b[2] - a[2]);
+			nation_array = nation_array.sort((a, b) => b[1] - a[1]);
 			
 			//Multiple Record Holders Table
 			$('#multiple-records').DataTable({
