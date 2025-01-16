@@ -332,7 +332,7 @@
 					break;
 				}
 			};
-			nation_array = nation_array.sort((a, b) => b[2] - a[2]);
+			nation_array = nation_array.sort((a, b) => b[1] - a[1]);
 			
 			//Multiple Record Holders Table
 			$('#multiple-records').DataTable({
