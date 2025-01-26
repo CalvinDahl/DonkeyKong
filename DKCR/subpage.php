@@ -429,7 +429,7 @@
 					const url = URL.createObjectURL(blob);
 					
 					link.setAttribute('href', url);
-					link.setAttribute('download', 'dkctf_wrs.csv');
+					link.setAttribute('download', 'dkcrhd_wrs.csv');
 					document.body.appendChild(link);
 					link.click();
 					document.body.removeChild(link);
