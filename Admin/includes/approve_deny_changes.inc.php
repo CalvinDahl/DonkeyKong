@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
 	$data = get_changelog_data($pdo,$id);
 	
-	if($approved){
+	if($approved == "true"){
 		decode_changes($pdo,$data['id'],$data['player'],$data['nation'],$data['level_id'],$data['level_time'],
 			$data['date_set'],$data['kong_used'],$data['video_link'],$data['change_log']);
 	}
