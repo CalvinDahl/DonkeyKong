@@ -7,7 +7,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$stmt->execute();
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		
-		function array_to_csv_download($array, $filename = "dkcr_wrs.csv", $delimiter=",") {
+		function array_to_csv_download($array, $filename = "dkcrhd_wrs.csv", $delimiter=",") {
 			header('Content-Type: application/csv');
 			header('Content-Disposition: attachment; filename="'.$filename.'";');
 			
