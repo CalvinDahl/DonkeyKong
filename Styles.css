@@ -41,6 +41,10 @@
     font-family: "Biryani-Bold";
     src: url("includes/Fonts/biryani/Biryani-Bold.otf") format("opentype");
 }
+@font-face {
+    font-family: "Biryani-Heavy";
+    src: url("includes/Fonts/biryani/Biryani-Heavy.otf") format("opentype");
+}
 body{
 	background-image: url("includes/images/Clouds.png");
 	background-attachment: fixed;
@@ -216,12 +220,29 @@ body{
 .kong_barrel {
 	width: 1.4em;
 }
-
+/* Total Time Properties */
+.Leaderboard-Time{
+	float: right;
+	margin-right: 4%;
+	margin-top: 0.2rem;
+}
+.Leaderboard-Time li{
+	display: inline-block;
+	text-align: right;
+	color: var(--black);
+	font-weight: 1000;
+	font-size: 1.2rem;
+	font-family:"Biryani-Heavy";
+	letter-spacing: 0.1rem;
+}
 @media (max-width: 600px) {
 	.flag {
 		width: 4em;
 	}
 	.kong_barrel {
 		width: 2.8em;
+	}
+	.background h1{
+	padding-top: 3vw;
 	}
 }
