@@ -183,6 +183,10 @@
 									</thead>
 									<tbody></tbody>
 								</table>
+								<ul class="Leaderboard-Time">
+									<li>Total ~</li>
+									<li id="total_time">00:00:00.00</li>
+								</ul>
 							</span>
 						</div>
 					</div>
@@ -228,7 +232,16 @@
 	<!-- DataTables Styles & Plugins -->
 	<script src="./../DataTables/datatables.min.js" type="text/javascript"></script>
 	
-	<!-- AJAX Server Calls -->
+	<!-- Footer Data Table Function -->
+	<script type="text/javascript" src ="includes/js/footer_table.js"></script>
+	
+	<!-- Total IL Time Function -->
+	<script type="text/javascript" src ="includes/js/sum_total_time.js"></script>
+	
+	<!-- Excel Download Server Call -->
+	<script type="text/javascript" src ="includes/js/excel_download.js"></script>
+	
+	<!-- Main Data Table Server Call -->
 	<script type="text/javascript">
 		//Upload Table Initialization
 		$('#leaderboard').DataTable({
@@ -249,7 +262,8 @@
 			},
 			"drawCallback": function(settings) {
 				MergeGridCells('leaderboard',[1]);
-				SubDataTable(settings.json)
+				SummedTable(settings.json);
+				SubDataTable(settings.json);
 			   //do whatever  
 			},
 			'columnDefs':[
@@ -299,94 +313,6 @@
 			});
 		  }
 		}
-		//FOOTER TABLES
-		function SubDataTable(Table){
-			var names = [];
-			var nations = [];
-			Table.data.forEach((row) => {
-				names.push(row[1]);
-				nations.push(row[2]);
-			});
-			var player_count = names.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
-			var player_array = Object.entries(player_count);
-			player_array.forEach((col) => {
-				let index = player_array.indexOf(col);
-				for(var row of Table.data){
-					if (col[0] == row[1]){
-						player_array[index].splice(1,0,row[2]);
-						break;
-					}
-				};
-			});
-			player_array = player_array.sort((a, b) => b[2] - a[2]);
-			console.log(player_array);
-			
-			var nation_count = nations.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
-			var nation_array = Object.entries(nation_count);
-			for (var col of nation_array){
-				let index = nation_array.indexOf(col);
-				if(col[0] == ""){
-					nation_array.splice(index,1);
-					break;
-				}
-			};
-			nation_array = nation_array.sort((a, b) => b[1] - a[1]);
-			
-			//Multiple Record Holders Table
-			$('#multiple-records').DataTable({
-				'paging':false,
-				'searching':false,
-				'lengthChange':false,
-				'info':false,
-				'order':[],
-				columns: [
-					{ title: 'Player' },
-					{ title: 'Nation' },
-					{ title: "WR's" },
-				],
-				data: player_array,
-				'columnDefs':[
-					{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
-				]
-			});
-			//Nation Record Holders Table
-			$('#nation-records').DataTable({
-				'paging':false,
-				'searching':false,
-				'lengthChange':false,
-				'info':false,
-				'order':[],
-				columns: [
-					{ title: 'Nation' },
-					{ title: "WR's" },
-				],
-				data: nation_array,
-				'columnDefs':[
-					{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
-				]
-			});
-		}
-		//Download CSV
-		$(document).on('click','#DownloadCSV',function(event){
-			$.ajax({
-				url:"includes/Excel.inc.php",
-				type:"post",
-				success:function(data){
-					console.log(data);
-					// Create a Blob from the CSV data
-					const blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
-					const link = document.createElement('a');
-					const url = URL.createObjectURL(blob);
-					
-					link.setAttribute('href', url);
-					link.setAttribute('download', 'dkcrhd_wrs.csv');
-					document.body.appendChild(link);
-					link.click();
-					document.body.removeChild(link);
-				}
-			});
-		});
-		
 	</script>
 </body>
 </html>
