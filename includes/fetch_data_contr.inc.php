@@ -21,7 +21,7 @@ function decode_data_video_link($video_link,$level_time) {
 	$level_time = decode_data_level_time($level_time);
     if($video_link == ""){
 		return $level_time;
-	} else return '<a href="'.$video_link.'" target="_blank">'.$level_time.'</a>';
+	} else return '<a href="'.$video_link.'" target="_blank" rel="noopener noreferrer">'.$level_time.'</a>';
 }
 function decode_data_kong_used($kong_used){
 	$path = 'includes/images/'.($kong_used).'.png';
