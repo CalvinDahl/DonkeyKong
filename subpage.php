@@ -29,7 +29,7 @@
 					<div class="nav col-3 col-md-2">
 						<center>
 							<a href = ".">
-								<img src="includes/images/Tropical_Freeze_Logo.png" style='height: 100%; width: 100%; object-fit: contain; margin: 0.5rem'>
+								<img src="includes/images/Tropical_Freeze_Logo.png" style='height: 100%; width: 100%; object-fit: contain; margin: 0.5rem' alt="Dkctf Game Logo">
 							</a>
 						</center>
 						<div class="Nav-Worlds">
@@ -139,7 +139,7 @@
 							</ul>
 						</div>
 						<center>
-							<img src="includes/images/Splash.png" style='width:105%; object-fit: contain; margin: 0.5rem; margin-bottom: -18%'>
+							<img src="includes/images/Splash.png" style='width:105%; object-fit: contain; margin: 0.5rem; margin-bottom: -18%' alt="Decorative Waterfall Splash">
 						</center>
 					</div>
 					<div class="background col-9 col-md-10">
@@ -178,7 +178,7 @@
 					</div>
 				</div>
 				<div class = "row TreeBackdrop">
-					<img style="margin:0; padding:0;" src="includes/images/TreeBackdrop.png">
+					<img style="margin:0; padding:0;" src="includes/images/TreeBackdrop.png" alt="Black Palm Tree Silhouette">
 				</div>
 				<div class = "row Footer">
 					<div class="footer-contents">
@@ -259,6 +259,7 @@
 			"drawCallback": function(settings) {
 				MergeGridCells('leaderboard',[1]);
 				SubDataTable(settings.json)
+				SubPageDataTable(settings.json)
 			   //do whatever  
 			},
 			'columnDefs':[
