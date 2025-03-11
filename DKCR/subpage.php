@@ -282,8 +282,8 @@
 			},
 			"drawCallback": function(settings) {
 				MergeGridCells('leaderboard',[1]);
-				SubDataTable(settings.json)
-				SubPageDataTable(settings.json)
+				SubDataTable(settings.json);
+				SubPageDataTable(settings.json);
 			   //do whatever  
 			},
 			'columnDefs':[
