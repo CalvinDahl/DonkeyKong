@@ -81,6 +81,7 @@
 				{ title: "Date Set" },
 				{ title: "Name" },
 				{ title: "Nation" },
+				{ title: "" },
 				{ title: "Time / Video" },
 			],
 			data: record_array,
@@ -88,7 +89,8 @@
 				{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
 				{'target':0,'width':'15%'},
 				{'target':2,'width':'3%'},
-				{'target':3,'width':'15%'},
+				{'target':3,'width':'3%'},
+				{'target':4,'width':'15%'},
 			]
 		});
 	}
