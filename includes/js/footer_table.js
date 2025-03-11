@@ -64,3 +64,31 @@
 			]
 		});
 	}
+		
+	function SubPageDataTable(Table){
+		
+		var record_array =  Table[Object.keys(Table)[Object.keys(Table).length - 1]].at(-1);
+		var record_array = [record_array];
+		
+		//Current Record Table
+		$('#current-record').DataTable({
+			'paging':false,
+			'searching':false,
+			'lengthChange':false,
+			'info':false,
+			'order':[],
+			columns: [
+				{ title: "Date Set" },
+				{ title: "Name" },
+				{ title: "Nation" },
+				{ title: "Time / Video" },
+			],
+			data: record_array,
+			'columnDefs':[
+				{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
+				{'target':0,'width':'15%'},
+				{'target':2,'width':'3%'},
+				{'target':3,'width':'15%'},
+			]
+		});
+	}
