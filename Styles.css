@@ -132,7 +132,7 @@ body{
 	padding-bottom: 4rem;
 	background-color: #000;
 }
-.Footer h1{
+.Footer h3{
 	color: var(--gold);
 	font-size: 3rem;
 	font-weight: 1000;
