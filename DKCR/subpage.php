@@ -206,7 +206,7 @@
 				</div>
 				<div class = "row Footer">
 					<div class="footer-contents">
-						<h3 class="text-center">Multiple World Record Holders</h1>
+						<h3 class="text-center">Multiple World Record Holders</h3>
 						<div class = "row justify-content-center">
 							<div class="col-5">
 								<span class="background-table">
