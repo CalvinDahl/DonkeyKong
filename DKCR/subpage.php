@@ -159,9 +159,9 @@
 						<div class="Nav-Worlds">
 							<h2>About</h2>
 							<ul>
-								<li><a href="Admin/LoginDisplay.php" target="_blank">Updaters</a></li>
+								<li><a href="Admin/LoginDisplay.php" target="_blank" rel="noopener noreferrer">Updaters</a></li>
 								<li><a href="javascript:void(0)" id="DownloadCSV">Download CSV</a></li>
-								<li><a href="https://discord.gg/geapzyk8mS" target="_blank">Discord Link</a></li>
+								<li><a href="https://discord.gg/geapzyk8mS" target="_blank" rel="noopener noreferrer">Discord Link</a></li>
 							</ul>
 						</div>
 						<center>
