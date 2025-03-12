@@ -145,7 +145,7 @@
 					<div class="background col-9 col-md-10">
 						<div class="layer-color-overlay"></div>
 						<h1 class="text-center" id="level-title">WR History</h1>
-						<img src="includes/images/Border.png" class="Border">
+						<img src="includes/images/Border.webp" class="Border">
 						<div class = "background-content row justify-content-center">
 							<h2 class="text-center">Current World Record:</h2>
 							<span class="background-table">

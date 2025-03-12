@@ -142,7 +142,7 @@ body{
 /* MAIN BODY */
 /* Title and Decorative Background*/
 .background{
-	background-image: url("includes/images/Test.png");
+	background-image: url("includes/images/Test.webp");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	padding-bottom: 5rem;
