@@ -123,6 +123,18 @@ body{
 	text-decoration: underline;
 	font-family:"Biryani-Regular";
 }
+#WR_Analytics:hover{
+	color: var(--white);
+	text-decoration: underline;
+	font-family:"Biryani-Regular";
+	cursor: pointer;
+}
+#Player_rankings:hover{
+	color: var(--white);
+	text-decoration: underline;
+	font-family:"Biryani-Regular";
+	cursor: pointer;
+}
 /* FOOTER */
 .TreeBackdrop{
 	object-fit: contain;
@@ -220,6 +232,9 @@ body{
 .kong_barrel {
 	width: 1.4em;
 }
+.wr_medal {
+	width: 1.8em;
+}
 /* Total Time Properties */
 .Leaderboard-Time{
 	float: right;
@@ -235,6 +250,33 @@ body{
 	font-family:"Biryani-Heavy";
 	letter-spacing: 0.1rem;
 }
+
+/* Modal Stat Styles */
+.statistics-modal h5{
+	font-size: 2rem;
+	color: #f2f3f4;
+	font-weight: 1;
+	font-family:"Neuland";
+	letter-spacing: 0.1rem;
+	text-shadow: 0.1rem 0.1rem 0.15rem var(--darkorange), -0.1rem -0.1rem 0.15rem var(--darkorange), 0.1rem -0.1rem 0.15rem var(--darkorange), -0.1rem 0.1rem 0.15rem var(--darkorange);
+}
+.text-modal{
+	color: #f2f3f4;
+	font-weight: 1;
+	font-family:"Biryani-Regular";
+	letter-spacing: 0.1rem;
+}
+.btn-secondary, .btn-secondary:visited {
+    background-color: var(--lightblue) !important;
+	color: var(--white) !important;
+	font-family:"Neuland" !important;
+}
+.btn-secondary:hover, .btn-secondary:active {
+	background-color: var(--darkblue) !important;
+	color: var(--gold) !important;
+	text-shadow: 0 0 0 0;
+}
+
 @media (max-width: 600px) {
 	.flag {
 		width: 4em;
@@ -242,7 +284,10 @@ body{
 	.kong_barrel {
 		width: 2.8em;
 	}
+	.wr_medal {
+		width: 2.8em;
+	}
 	.background h1{
-	padding-top: 3vw;
+		padding-top: 3vw;
 	}
 }

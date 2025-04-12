@@ -23,3 +23,10 @@ function decode_data_video_link($video_link,$level_time) {
 		return $level_time;
 	} else return '<a href="'.$video_link.'" target="_blank" rel="noopener noreferrer">'.$level_time.'</a>';
 }
+function decode_data_current_wr($date_set,$check_date){
+	if($date_set == $check_date){
+		$path = 'includes/images/Medal.png';
+		return '<img class = "wr_medal" src='.$path.'>';
+	}
+	else return '';
+}

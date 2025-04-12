@@ -27,3 +27,10 @@ function decode_data_kong_used($kong_used){
 	$path = 'includes/images/'.($kong_used).'.png';
 	return '<img class = "kong_barrel" src='.$path.'>';
 }
+function decode_data_current_wr($date_set,$check_date){
+	if($date_set == $check_date){
+		$path = 'includes/images/Medal.png';
+		return '<img class = "wr_medal" src='.$path.'>';
+	}
+	else return '';
+}

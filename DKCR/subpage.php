@@ -33,6 +33,13 @@
 							</a>
 						</center>
 						<div class="Nav-Worlds">
+							<h2>Stats</h2>
+							<ul>
+								<li><a id="Player_rankings" data-bs-toggle="modal" data-bs-target="#rankingModal">Player Rankings</a></li>
+								<li><a id="WR_Analytics" data-bs-toggle="modal" data-bs-target="#statisticsModal">WR Analytics</a></li>
+							</ul>
+						</div>
+						<div class="Nav-Worlds">
 							<h2>World 1: Jungle</h2>
 							<ul>
 								<li><a href="subpage.php?id=101&name=Jungle Hijinx">1-1: Jungle Hijinx</a></li>
@@ -333,5 +340,22 @@
 		  }
 		}
 	</script>
+	
+	<!-- Statistics Modal And Data Call -->
+	<script> 
+    $(function(){
+		$("#statpage").load("statpage.php"); 
+    });
+    </script>
+	
+	<!-- Ranking Modal And Data Call -->
+	<script>
+    $(function(){
+		$("#rankingpage").load("rankingpage.php"); 
+    });
+    </script>
+	
+	<div id="statpage"></div>
+	<div id="rankingpage"></div>
 </body>
 </html>
