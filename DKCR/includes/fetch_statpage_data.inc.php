@@ -10,26 +10,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		
 		if($_POST['level_id'] == "All"){
 			
-			$query = "SELECT
-			*
+			$query = "SELECT *
 			FROM(
 				SELECT
 					*,
-					DATEDIFF(next_date,date_set) AS difference
-					FROM( 
+					SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
+												ORDER BY date_set DESC, level_time DESC) AS difference
+					FROM(
 						SELECT
-						*,
-						COALESCE(
-							(LEAD(date_set,1) OVER( 
-								PARTITION BY level_id 
-								ORDER BY date_set ASC, level_time DESC
-							)
-							),:check_date
-						) AS next_date
-						FROM upload
-					) AS X
-				) AS Y
-			WHERE difference > 0
+							*,
+							DATEDIFF(next_date,date_set) AS datedifference
+							FROM( 
+								SELECT
+								*,
+								COALESCE(
+									(LEAD(date_set,1) OVER( 
+										PARTITION BY level_id 
+										ORDER BY date_set ASC, level_time DESC
+									)
+									),:check_date
+								) AS next_date
+								FROM upload WHERE date_set <= :check_date
+						) AS X
+					) AS Y
+				) AS Z
+			WHERE difference >= 0
 			ORDER BY difference DESC";
 			
 			$stmt = $pdo->prepare($query);
@@ -37,26 +42,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		}else{
 			$level_id_page = $_POST['level_id'];
 			
-			$query = "SELECT
-			*
+			$query = "SELECT *
 			FROM(
 				SELECT
 					*,
-					DATEDIFF(next_date,date_set) AS difference
-					FROM( 
-						SELECT
+					SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
+												ORDER BY date_set DESC, level_time DESC) AS difference
+				FROM(
+					SELECT
 						*,
-						COALESCE(
-							(LEAD(date_set,1) OVER( 
-								PARTITION BY level_id
-								ORDER BY date_set ASC, level_time DESC
-							)
-							),:check_date
-						) AS next_date
-						FROM upload WHERE level_id = :level_id_page
-					) AS X
-				) AS Y
-			WHERE difference > 0
+						DATEDIFF(next_date,date_set) AS datedifference
+						FROM( 
+							SELECT
+							*,
+							COALESCE(
+								(LEAD(date_set,1) OVER( 
+									PARTITION BY level_id
+									ORDER BY date_set ASC, level_time DESC
+								)
+								),:check_date
+							) AS next_date
+							FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
+						) AS X
+					) AS Y
+				) AS Z
+			WHERE difference >= 0
 			ORDER BY difference DESC";
 			
 			$stmt = $pdo->prepare($query);
@@ -77,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				'nation' => decode_data_nation($row['nation']),
 				'level_time' => decode_data_video_link($row['video_link'],$row['level_time']),
 				'date_set' => $row['date_set'],
-				'difference' => $row['difference'],
+				'difference' => decode_data_difference($row['difference']),
 				'current' => decode_data_current_wr($row['next_date'],$check_date)
 			);
 			$data[] = $subarray;

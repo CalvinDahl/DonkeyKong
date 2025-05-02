@@ -22,10 +22,10 @@
 							)
 							),:check_date
 						) AS next_date
-						FROM upload		
+						FROM upload WHERE date_set <= :check_date
 					) AS X
 				) AS Y
-			WHERE difference > 0
+			WHERE difference >= 0
 			GROUP BY player
 		) AS t2
 inner JOIN(
@@ -46,7 +46,7 @@ SELECT
             )
             ),:check_date
         ) AS Finish
-        FROM upload
+        FROM upload WHERE date_set <= :check_date
     ) AS e9 GROUP BY player
     UNION
     SELECT distinct
@@ -62,7 +62,7 @@ SELECT
             )
             ),:check_date
         ) AS Finish
-        FROM upload
+        FROM upload WHERE date_set <= :check_date
     ) AS e1
     join upload e3 on e1.Finish < e3.date_set
          and e3.player = e1.player
@@ -76,7 +76,7 @@ SELECT
                                                         )
                                                         ),:check_date
                                                     ) AS Finish
-                                                    FROM upload
+                                                    FROM upload WHERE date_set <= :check_date
                                                 ) AS e5
                          where e5.date_set > e1.Finish
                         and e5.player = e3.player)
@@ -90,7 +90,7 @@ SELECT
                                         )
                                         ),:check_date
                                     ) AS Finish
-                                    FROM upload
+                                    FROM upload WHERE date_set <= :check_date
                                 ) AS e7
                         where e7.date_set <= e1.Finish
                           and e7.Finish > e1.Finish
@@ -133,10 +133,10 @@ SELECT
 							)
 							),:check_date
 						) AS next_date
-						FROM upload WHERE level_id = :level_id_page
+						FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
 					) AS X
 				) AS Y
-			WHERE difference > 0
+			WHERE difference >= 0
 			GROUP BY player
 		) AS t2
 inner JOIN(
@@ -157,7 +157,7 @@ SELECT
             )
             ),:check_date
         ) AS Finish
-        FROM upload WHERE level_id = :level_id_page
+        FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
     ) AS e9 GROUP BY player
     UNION
     SELECT distinct
@@ -173,7 +173,7 @@ SELECT
             )
             ),:check_date
         ) AS Finish
-        FROM upload WHERE level_id = :level_id_page
+        FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
     ) AS e1
     join upload e3 on e1.Finish < e3.date_set
          and e3.player = e1.player
@@ -187,7 +187,7 @@ SELECT
                                                         )
                                                         ),:check_date
                                                     ) AS Finish
-                                                    FROM upload WHERE level_id = :level_id_page
+                                                    FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
                                                 ) AS e5
                          where e5.date_set > e1.Finish
                         and e5.player = e3.player)
@@ -201,7 +201,7 @@ SELECT
                                         )
                                         ),:check_date
                                     ) AS Finish
-                                    FROM upload WHERE level_id = :level_id_page
+                                    FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
                                 ) AS e7
                         where e7.date_set <= e1.Finish
                           and e7.Finish > e1.Finish
