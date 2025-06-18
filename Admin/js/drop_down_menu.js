@@ -6,7 +6,12 @@
 	'4-3','4-4','4-5','4-6','4-A','4-B','4-K','5-Boss','5-1','5-2','5-3','5-4','5-5','5-6','5-A','5-B','5-K','6-Boss',
 	'6-1','6-2','6-3','6-4','6-5','6-6','6-7','6-8','6-A','6-B','6-K','7-1','7-2','7-3'];
 	let countries = [];
-	let kongs = ["Funky","Cranky","Dixie","Diddy","Default"];
+	let kongs = [];
+	if(gamemode_check == "funky"){
+		kongs = ["Funky","Cranky","Dixie","Diddy","Default"];
+	} else{
+		kongs = ["Cranky","Dixie","Diddy","Default"];
+	}
 	
 	const playerListElement = document.querySelector('#player-list');
 	const playerInputElement = document.querySelector('#inputPlayer');
@@ -40,8 +45,12 @@
 	
 //Functions
 	function fetchNames(){
-		fetch('./includes/fetch_player_names_data.inc.php')
-		.then(res => res.json())
+		var data = new FormData();
+		data.append('db_switch',db_switch);
+		fetch('./includes/fetch_player_names_data.inc.php',{
+			method: 'POST',
+			body: data,
+		}).then(res => res.json())
 		.then(data => {
 			player_names = data.map((filObj) => filObj.player);
 		}).catch(err => {

@@ -10,7 +10,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$change_log = "Added New Entry!";
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['db_switch'])){
+			if($_POST['db_switch'] == "dkctf_om_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "newentry_contr.inc.php";
 		
 		$errors['status'] = "";
@@ -62,20 +68,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->execute();
 			
 			$errors['status'] = "success";
+		}	
+		require_once 'config_session.inc.php';
+		if(isset($_SESSION['user_id'])){
+			if($_POST['db_switch'] == "dkctf_om_database"){
+				$pdo = null;
+				$stmt = null;
+				require_once "dbh.inc.php";
+			}	
+			$username = $_SESSION['user_id'];
+			$query = 'UPDATE users SET Contributions = Contributions + 1 WHERE username = :username;';
+			$stmt = $pdo->prepare($query);
 			
-			require_once 'config_session.inc.php';
-			if(isset($_SESSION['user_id'])){
-				$username = $_SESSION['user_id'];
-				$query = 'UPDATE users SET Contributions = Contributions + 1 WHERE username = :username;';
-				$stmt = $pdo->prepare($query);
-				
-				$stmt->bindParam(":username", $username);
-				$stmt->execute();
-			}
+			$stmt->bindParam(":username", $username);
+			$stmt->execute();
 		}
-		
-		$pdo = null;
-		$stmt = null;
 		echo json_encode($errors);
 		
 	} catch (PDOException $e){

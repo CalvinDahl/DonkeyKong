@@ -34,3 +34,12 @@
 	color: #666699;
 }
 /*Drop Down Menu Styling*/
+
+/*Button Styling*/
+.game-mode-switch-active {
+	background: rgb(220,32,255);
+	border: rgb(200,10,100);
+}
+.game-mode-switch-active:hover {
+	background: rgb(180,32,255);
+}

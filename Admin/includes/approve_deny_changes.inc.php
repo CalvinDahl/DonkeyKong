@@ -2,7 +2,13 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$id = $_POST["id"];
 	$approved = $_POST["approved"];
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkctf_om_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	require_once "approve_deny_changes_model.inc.php";
 	require_once "approve_deny_changes_contr.inc.php";
 	

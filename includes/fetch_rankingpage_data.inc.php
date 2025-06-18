@@ -3,7 +3,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$check_date = $_POST['check_date'];
 	$start_date = $_POST['start_date'];
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['database'])){
+			if($_POST['database'] == "dkctf_om_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "fetch_rankingpage_data_model.inc.php";
 		require_once "fetch_data_contr.inc.php";
 		

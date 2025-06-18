@@ -24,12 +24,14 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container">
-				<h1 class="text-center">Server Database Entries</h1>
+				<h1 id="main-title" class="text-center">Server Database Entries</h1>
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
 						<button type="button" style="margin-bottom: 20px;" class="btn btn-primary" data-bs-toggle="modal"
 						data-bs-target="#addDataEntry">Add New Entry</button>
+						<button type="button" style="margin-bottom: 20px;" class="btn btn-primary float-end game-mode-switch"
+						title="click to edit original mode times" value="dkctf_database" id="game-mode-switch">Original Mode</button>
 					</div>
 				</div>
 				<div class="row">
@@ -70,13 +72,24 @@
 		</div>
 	</div>
 	
+	<!-- URL Params -->
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+		const gamemode_check = urlParams.get('gamemode');
+	</script>
 	
 	<!-- DataTables Styles & Plugins -->
 	<script src="../DataTables/datatables.min.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/plug-ins/2.1.7/dataRender/ellipsis.js" type="text/javascript"></script>
 	
+	<!-- Button Switch -->
+	<script src ="js/button_switch.js"></script>
+	
 	<!-- AJAX Server Calls -->
 	<script type="text/javascript">
+		
+		const db_switch = document.getElementById('game-mode-switch').value;
+		
 		//Upload Table Initialization
 		$('#searchTable').DataTable({
 			'serverSide':'true',
@@ -86,6 +99,9 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_data.inc.php',
+				'data': function (d) {
+					d.db_switch = document.getElementById('game-mode-switch').value;
+				},
 				'type':'post',
 			},
 			'fnCreatedRow':function(nRow,aData,iDataIndex)
@@ -113,6 +129,9 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_changelog_data.inc.php',
+				'data': function (d) {
+					d.db_switch = document.getElementById('game-mode-switch').value;
+				},
 				'type':'post',
 			},
 			'fnCreateRow':function(nRow,aData,iDataIndex)
@@ -136,7 +155,7 @@
 			var video_link = $('#inputVideoLink').val();
 			$.ajax({
 				url:"includes/newentry.inc.php",
-				data:{player:player,nation:nation,level_id:level_id,level_time:level_time,date_set:date_set,kong_used:kong_used,video_link:video_link},
+				data:{player:player,nation:nation,level_id:level_id,level_time:level_time,date_set:date_set,kong_used:kong_used,video_link:video_link,db_switch:db_switch},
 				type:'post',
 				success:function(data){
 					alert(data);
@@ -167,7 +186,7 @@
 			$('#editDataEntry').modal('show');
 			$.ajax({
 				url:"includes/fetch_single_data.inc.php",
-				data:{id:id,database:database},
+				data:{id:id,database:database,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					var json = JSON.parse(data);
@@ -193,7 +212,7 @@
 			var id = $(this).data('id');
 			$.ajax({
 				url:"includes/removeentry.inc.php",
-				data:{id:id},
+				data:{id:id,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					console.log(data);
@@ -221,7 +240,7 @@
 			$.ajax({
 				url:"includes/update.inc.php",
 				data:{id:id,player:player,nation:nation,level_id:level_id,level_time:level_time,
-				date_set:date_set,kong_used:kong_used,video_link:video_link},
+				date_set:date_set,kong_used:kong_used,video_link:video_link,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					table= $('#changelogtable').DataTable();
@@ -248,7 +267,7 @@
 			var database = " changelog ";
 			$.ajax({
 				url:"includes/fetch_single_data.inc.php",
-				data:{id:id,database:database},
+				data:{id:id,database:database,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					var json = JSON.parse(data);
@@ -277,7 +296,7 @@
 			if(confirm('Are you sure you want to deny these changes?')){
 				$.ajax({
 					url:"includes/approve_deny_changes.inc.php",
-					data:{id:id,approved:approved},
+					data:{id:id,approved:approved,db_switch:db_switch},
 					type:"post",
 					success:function(data){
 						var json = JSON.parse(data);
@@ -298,7 +317,7 @@
 			if(confirm('Are you sure you want to apply these changes?')){
 				$.ajax({
 					url:"includes/approve_deny_changes.inc.php",
-					data:{id:id,approved:approved},
+					data:{id:id,approved:approved,db_switch:db_switch},
 					type:"post",
 					success:function(data){
 						var json = JSON.parse(data);

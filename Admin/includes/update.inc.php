@@ -10,7 +10,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$video_link = $_POST["video_link"];
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['db_switch'])){
+			if($_POST['db_switch'] == "dkctf_om_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "update_model.inc.php";
 		require_once "update_contr.inc.php";
 		
