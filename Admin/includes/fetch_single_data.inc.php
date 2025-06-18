@@ -3,7 +3,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$id = $_POST["id"];
 	$database = $_POST["database"];
 	
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkctf_om_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	require_once "fetch_single_data_contr.inc.php";
 	
 	if(validate_database($database)){

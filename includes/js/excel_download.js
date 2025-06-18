@@ -1,7 +1,9 @@
 //Download CSV
 	$(document).on('click','#DownloadCSV',function(event){
+		var database = document.getElementById('game-mode-switch').value;
 		$.ajax({
 			url:"includes/Excel.inc.php",
+			data:{database:database},
 			type:"post",
 			success:function(data){
 				// Create a Blob from the CSV data

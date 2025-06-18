@@ -2,56 +2,26 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$check_date = $_POST['check_date'];
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['database'])){
+			if($_POST['database'] == "dkctf_om_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "fetch_data_contr.inc.php";
 		
-		$gamemode = "funky";
 		$count_all_rows = $pdo->query('select count(*) from upload')->fetchColumn();
 		$filtered_rows = $count_all_rows;
 		
-		if($gamemode == "original"){
-			$query = "SELECT * FROM upload WHERE level_id = :level_id ORDER BY date_set ASC, level_time DESC";
-		}else if($gamemode == "funky"){
-			if($_POST['level_id'] == "All"){
-				
-				$query = "SELECT *
-				FROM(
-					SELECT
-						*,
-						SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
-													ORDER BY date_set DESC, level_time DESC) AS difference
-						FROM(
-							SELECT
-								*,
-								DATEDIFF(next_date,date_set) AS datedifference
-								FROM( 
-									SELECT
-									*,
-									COALESCE(
-										(LEAD(date_set,1) OVER( 
-											PARTITION BY level_id 
-											ORDER BY date_set ASC, level_time DESC
-										)
-										),:check_date
-									) AS next_date
-									FROM upload WHERE date_set <= :check_date
-							) AS X
-						) AS Y
-					) AS Z
-				WHERE difference >= 0
-				ORDER BY difference DESC";
-				
-				$stmt = $pdo->prepare($query);
-				$stmt->bindParam(":check_date", $check_date);
-			}else{
-				$level_id_page = $_POST['level_id'];
-				
-				$query = "SELECT *
-				FROM(
-					SELECT
-						*,
-						SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
-													ORDER BY date_set DESC, level_time DESC) AS difference
+		if($_POST['level_id'] == "All"){
+			
+			$query = "SELECT *
+			FROM(
+				SELECT
+					*,
+					SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
+												ORDER BY date_set DESC, level_time DESC) AS difference
 					FROM(
 						SELECT
 							*,
@@ -61,22 +31,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								*,
 								COALESCE(
 									(LEAD(date_set,1) OVER( 
-										PARTITION BY level_id
+										PARTITION BY level_id 
 										ORDER BY date_set ASC, level_time DESC
 									)
 									),:check_date
 								) AS next_date
-								FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
-							) AS X
-						) AS Y
-					) AS Z
-				WHERE difference >= 0
-				ORDER BY difference DESC";
-				
-				$stmt = $pdo->prepare($query);
-				$stmt->bindParam(":check_date", $check_date);
-				$stmt->bindParam(":level_id_page", $level_id_page);
-			}
+								FROM upload WHERE date_set <= :check_date
+						) AS X
+					) AS Y
+				) AS Z
+			WHERE difference >= 0
+			ORDER BY difference DESC";
+			
+			$stmt = $pdo->prepare($query);
+			$stmt->bindParam(":check_date", $check_date);
+		}else{
+			$level_id_page = $_POST['level_id'];
+			
+			$query = "SELECT *
+			FROM(
+				SELECT
+					*,
+					SUM(Y.datedifference) OVER (PARTITION BY level_id,level_time 
+												ORDER BY date_set DESC, level_time DESC) AS difference
+				FROM(
+					SELECT
+						*,
+						DATEDIFF(next_date,date_set) AS datedifference
+						FROM( 
+							SELECT
+							*,
+							COALESCE(
+								(LEAD(date_set,1) OVER( 
+									PARTITION BY level_id
+									ORDER BY date_set ASC, level_time DESC
+								)
+								),:check_date
+							) AS next_date
+							FROM upload WHERE level_id = :level_id_page AND date_set <= :check_date
+						) AS X
+					) AS Y
+				) AS Z
+			WHERE difference >= 0
+			ORDER BY difference DESC";
+			
+			$stmt = $pdo->prepare($query);
+			$stmt->bindParam(":check_date", $check_date);
+			$stmt->bindParam(":level_id_page", $level_id_page);
 		}
 		$stmt->execute();
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);

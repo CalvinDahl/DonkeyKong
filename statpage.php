@@ -39,9 +39,10 @@
 	//CHANGE DATE -> LOAD DATA
 	$(document).on('click','.datebtn',function(event){
 		var check_date = $('#inputDate1').val();
+		var database = document.getElementById('game-mode-switch').value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id},
+			data:{check_date:check_date,level_id:level_id,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -54,9 +55,10 @@
 	//ONE TIME ON CLICK -> LOAD DATA
 	$('#WR_Analytics').one('click',function(event){
 		var check_date = $('#inputDate1').val();
+		var database = document.getElementById('game-mode-switch').value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id},
+			data:{check_date:check_date,level_id:level_id,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -66,6 +68,13 @@
 			}
 		})
 	});
+	//SET MINIMUM DATE FOR BUTTON SWITCH
+	let minimum_date1 = document.getElementById('inputDate1')
+	if (gamemode_check =="funky"){
+		minimum_date1.min = '2018-05-04';
+	} else{
+		minimum_date1.min = '2014-02-13';
+	}
 	
 </script>
 

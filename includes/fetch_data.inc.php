@@ -2,34 +2,28 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['database'])){
+			if($_POST['database'] == "dkctf_om_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "fetch_data_contr.inc.php";
 		
-		$gamemode = "funky";
 		$count_all_rows = $pdo->query('select count(*) from upload')->fetchColumn();
 		$filtered_rows = $count_all_rows;
 		
-		if($gamemode == "original"){
-			$query = "SELECT *
-			FROM
-			(
-			SELECT *,
-			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
-			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank_partition
-			FROM upload WHERE kong_used != 'Funky'
-			)X
-			WHERE level_time = min_time";
-		}else if($gamemode == "funky"){
-			$query = "SELECT *
-			FROM
-			(
-			SELECT *,
-			MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
-			RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank_partition
-			FROM upload
-			)X
-			WHERE level_time = min_time";
-		}
+		$query = "SELECT *
+		FROM
+		(
+		SELECT *,
+		MIN(level_time) OVER (PARTITION BY level_id) AS min_time,
+		RANK() OVER (PARTITION BY level_id ORDER BY date_set ASC) AS rank_partition
+		FROM upload
+		)X
+		WHERE level_time = min_time";
+			
 		$stmt = $pdo->prepare($query); 
 		$stmt->execute();
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);

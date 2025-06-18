@@ -1,7 +1,13 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkctf_om_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	
 	$count_all_rows = $pdo->query('select count(*) from changelog')->fetchColumn();;
 	
