@@ -45,14 +45,28 @@
     font-family: "Biryani-Heavy";
     src: url("includes/Fonts/biryani/Biryani-Heavy.otf") format("opentype");
 }
+
 body{
 	background-image: url("includes/images/Clouds.png");
 	background-attachment: fixed;
 	background-size: 100% 100%;
 }
-.container-fluid{
+
+.active1{
+	background: rgba(80,10,60,0.5);
+}
+.active_button1{
+	background: var(--darken);
+	transition: 1s ease-in;
+}
+.active2{
 	background: var(--darken);
 }
+.active_button2{
+	background: rgba(80,10,60,0.5);
+	transition: 1s ease-in;
+}
+
 /* Header */
 .header b{
 	font-size: 1.4rem;
@@ -275,6 +289,11 @@ body{
 	background-color: var(--darkblue) !important;
 	color: var(--gold) !important;
 	text-shadow: 0 0 0 0;
+}
+
+.game-mode-switch {
+	margin: 0 1rem 1rem 1rem;
+	border: 1px solid var(--darkblue);
 }
 
 @media (max-width: 600px) {
