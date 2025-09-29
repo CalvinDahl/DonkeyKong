@@ -1,27 +1,35 @@
-//Set URL Params for switch		
-	$(document).on('click','.game-mode-switch',function(event){
-		if (gamemode_check =="funky"){
-			//Refresh Tables
-			urlParams.set('gamemode', 'original');
-			window.location.search = urlParams;
-		} else{
-			//Refresh Tables
-			urlParams.set('gamemode', 'funky');
-			window.location.search = urlParams;
-		}
+//Initialize button states and styles
+	let button_styles_funky = document.getElementById('game-mode-funky')
+	let button_styles_original = document.getElementById('game-mode-original')
+	let gamemode_query = document.getElementById('game-mode-switch')
+	
+	let gamemode_check = "funky";
+	if(localStorage.getItem('gamemode')){
+		gamemode_check = localStorage.getItem('gamemode');
+	}
+//Set params for refresh and refresh window	
+	$(document).on('click','.game-mode-funky',function(event){
+		//Refresh Tables
+		urlParams.set('gamemode', 'funky');
+		localStorage.setItem("gamemode", "funky");
+		window.location.search = urlParams;
 	});
-	let button_styles = document.querySelector('#game-mode-switch')
-	let title_styles = document.getElementById('main-title')
+	$(document).on('click','.game-mode-original',function(event){
+		//Refresh Tables
+		urlParams.set('gamemode', 'original');
+		localStorage.setItem("gamemode", "original");
+		window.location.search = urlParams;
+	});
+//Apply Styles	
 	if (gamemode_check =="original"){
-		button_styles.innerHTML  = "Funky Mode";
-		button_styles.title = "click to edit funky mode times";
-		button_styles.value = "dkctf_om_database";
-		button_styles.classList.remove('game-mode-switch-active');
-		title_styles.innerHTML = "Original Mode Database Entries";
-	} else if(gamemode_check =="funky"){
-		button_styles.innerHTML  = "Original Mode";
-		button_styles.title = "click to edit original mode times";
-		button_styles.value = "dkctf_database";
-		button_styles.classList.add('game-mode-switch-active');
-		title_styles.innerHTML = "Funky Mode Database Entries";
+		gamemode_query.dataset.value = "dkctf_om_database";
+		
+		button_styles_original.classList.add('active_button2');
+		button_styles_funky.classList.remove('active_button1');
+		
+	} else if (gamemode_check =="funky"){
+		gamemode_query.dataset.value = "dkctf_database";
+		
+		button_styles_original.classList.remove('active_button2');
+		button_styles_funky.classList.add('active_button1');
 	}

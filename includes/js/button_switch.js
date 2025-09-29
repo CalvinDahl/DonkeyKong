@@ -1,69 +1,44 @@
-//Initialize button states and styles	
-	let button_styles = document.querySelector('#game-mode-switch')
+//Initialize button states and styles
+	let button_styles_funky = document.getElementById('game-mode-funky')
+	let button_styles_original = document.getElementById('game-mode-original')
 	let background_styles = document.getElementById('background-overlay')
-	let hasInteracted = true;
+	let gamemode_query = document.getElementById('game-mode-switch')
+	
+	let gamemode_check = "funky";
+	if(localStorage.getItem('gamemode')){
+		gamemode_check = localStorage.getItem('gamemode');
+	}
 //Set params for refresh and refresh window	
-	$(document).on('click','.game-mode-switch',function(event){
-		if (gamemode_check =="funky"){
-			//Refresh Tables
-			urlParams.set('gamemode', 'original');
-			localStorage.setItem("hasInteracted", "false");
-			window.location.search = urlParams;
-		} else{
-			//Refresh Tables
-			urlParams.set('gamemode', 'funky');
-			localStorage.setItem("hasInteracted", "false");
-			window.location.search = urlParams;
-		}
+	$(document).on('click','.game-mode-funky',function(event){
+		//Refresh Tables
+		urlParams.set('gamemode', 'funky');
+		localStorage.setItem("gamemode", "funky");
+		window.location.search = urlParams;
 	});
-//Check if button was clicked
-	if (localStorage.getItem("hasInteracted") == false){
-		hasInteracted = localStorage.getItem("hasInteracted");
-	};
+	$(document).on('click','.game-mode-original',function(event){
+		//Refresh Tables
+		urlParams.set('gamemode', 'original');
+		localStorage.setItem("gamemode", "original");
+		window.location.search = urlParams;
+	});
 //Apply Styles	
 	if (gamemode_check =="original"){
-		button_styles.innerHTML  = "Funky Mode";
-		button_styles.title = "click to view funky mode times";
-		button_styles.value = "dkctf_om_database";
+		gamemode_query.dataset.value = "dkctf_om_database";
+		
 		background_styles.classList.add('active2');
 		background_styles.classList.remove('active1');
 		
-		button_styles.addEventListener('mouseenter', () => {
-			if (hasInteracted) {
-				background_styles.classList.remove('active_button1');
-				background_styles.classList.add('active_button2');
-			}
-		});
-
-		button_styles.addEventListener('mouseleave', () => {
-			if (hasInteracted) {
-				background_styles.classList.remove('active_button2');
-				background_styles.classList.add('active_button1');
-			}
-			hasInteracted = true;
-		});
+		button_styles_original.classList.add('active_button2');
+		button_styles_funky.classList.remove('active_button1');
+		
 	} else if (gamemode_check =="funky"){
-		button_styles.innerHTML  = "Original Mode";
-		button_styles.title = "click to view original mode times";
-		button_styles.value = "dkctf_database";
+		gamemode_query.dataset.value = "dkctf_database";
+		
 		background_styles.classList.add('active1');
 		background_styles.classList.remove('active2');
 		
-		
-		button_styles.addEventListener('mouseenter', () => {
-			if (hasInteracted) {
-				background_styles.classList.remove('active_button2');
-				background_styles.classList.add('active_button1');
-			}
-		});
-
-		button_styles.addEventListener('mouseleave', () => {
-			if (hasInteracted) {
-				background_styles.classList.remove('active_button1');
-				background_styles.classList.add('active_button2');
-			}
-			hasInteracted = true;
-		});
+		button_styles_original.classList.remove('active_button2');
+		button_styles_funky.classList.add('active_button1');
 	}
 //Add Current Gamemode to Nav Links	
 	$('.subpage-link').each(function(i, el){

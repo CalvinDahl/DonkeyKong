@@ -39,7 +39,7 @@
 	//CHANGE DATE -> LOAD DATA
 	$(document).on('click','.datebtn',function(event){
 		var check_date = $('#inputDate1').val();
-		var database = document.getElementById('game-mode-switch').value;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
 			data:{check_date:check_date,level_id:level_id,database:database},
@@ -55,7 +55,7 @@
 	//ONE TIME ON CLICK -> LOAD DATA
 	$('#WR_Analytics').one('click',function(event){
 		var check_date = $('#inputDate1').val();
-		var database = document.getElementById('game-mode-switch').value;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
 			data:{check_date:check_date,level_id:level_id,database:database},
