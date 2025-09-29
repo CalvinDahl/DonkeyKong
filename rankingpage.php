@@ -36,7 +36,7 @@
 	$(document).on('click','.datebtn',function(event){
 		var check_date = $('#inputDate2').val();
 		var start_date = document.getElementById('inputDate2').min;
-		var database = document.getElementById('game-mode-switch').value;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_rankingpage_data.inc.php',
 			data:{check_date:check_date,level_id:level_id,start_date:start_date,database:database},
@@ -53,7 +53,7 @@
 	$('#Player_rankings').one('click',function(event){
 		var check_date = $('#inputDate2').val();
 		var start_date = document.getElementById('inputDate2').min;
-		var database = document.getElementById('game-mode-switch').value;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_rankingpage_data.inc.php',
 			data:{check_date:check_date,level_id:level_id,start_date:start_date,database:database},

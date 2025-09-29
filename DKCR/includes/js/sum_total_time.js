@@ -47,6 +47,6 @@
 		seconds = Math.round((sum - (hours * 3600) - (minutes * 60))*100)/100;
 		timeString = hours.toString().padStart(1, '0') + ':' + 
 			  minutes.toString().padStart(2, '0') + ':' + 
-			  seconds.toString().padStart(2, '0');
+			  seconds.toFixed(2).padStart(5, '0');
 		document.getElementById('total_time').innerHTML = timeString;
 	}

@@ -151,9 +151,11 @@
 					</div>
 					<div class="col-9 col-md-10">
 						<div class = "row">
-							<div>
-								<button id="game-mode-switch" class="btn btn-secondary game-mode-switch float-end" 
-								title="click to view original mode times" value="dkctf_database">Original Mode</button>
+							<div id="game-mode-switch" data-value="dkctf_database">
+								<button id="game-mode-funky" class="btn btn-secondary game-mode-funky float-end" 
+								title="click to view funky mode times">Funky Mode</button>
+								<button id="game-mode-original" class="btn btn-secondary game-mode-original float-end" 
+								title="click to view original mode times" value="dkctf_om_database">Original Mode</button>
 							</div>
 						</div>
 						<div class= "row">
@@ -238,7 +240,6 @@
 		const urlParams = new URLSearchParams(window.location.search);
 		const level_id = urlParams.get('id');
 		const level_name = urlParams.get('name');
-		const gamemode_check = urlParams.get('gamemode');
 		
 		window.onload = function(){
 
@@ -275,7 +276,7 @@
 			'ajax':{
 				'url':'includes/fetch_level_data.inc.php',
 				'data': function (d) {
-					d.database = document.getElementById('game-mode-switch').value;
+					d.database = document.getElementById('game-mode-switch').dataset.value;
 					d.level_id = level_id;
 				},
 				'type':'post',

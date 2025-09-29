@@ -27,11 +27,13 @@
 				<h1 id="main-title" class="text-center">Server Database Entries</h1>
 				<div class="row">
 					<div class="col-md-1"></div>
-					<div class="col-md-10">
+					<div class="col-md-10" id="game-mode-switch" data-value="dkctf_database">
 						<button type="button" style="margin-bottom: 20px;" class="btn btn-primary" data-bs-toggle="modal"
 						data-bs-target="#addDataEntry">Add New Entry</button>
-						<button type="button" style="margin-bottom: 20px;" class="btn btn-primary float-end game-mode-switch"
-						title="click to edit original mode times" value="dkctf_database" id="game-mode-switch">Original Mode</button>
+						<button id="game-mode-funky" class="btn btn-secondary game-mode-funky float-end" 
+						title="click to view funky mode times">Funky Mode</button>
+						<button id="game-mode-original" class="btn btn-secondary game-mode-original float-end" 
+						title="click to view original mode times" value="dkctf_om_database">Original Mode</button>
 					</div>
 				</div>
 				<div class="row">
@@ -75,7 +77,6 @@
 	<!-- URL Params -->
 	<script>
 		const urlParams = new URLSearchParams(window.location.search);
-		const gamemode_check = urlParams.get('gamemode');
 	</script>
 	
 	<!-- DataTables Styles & Plugins -->
@@ -88,7 +89,7 @@
 	<!-- AJAX Server Calls -->
 	<script type="text/javascript">
 		
-		const db_switch = document.getElementById('game-mode-switch').value;
+		const db_switch = document.getElementById('game-mode-switch').dataset.value;
 		
 		//Upload Table Initialization
 		$('#searchTable').DataTable({
@@ -100,7 +101,7 @@
 			'ajax':{
 				'url':'includes/fetch_data.inc.php',
 				'data': function (d) {
-					d.db_switch = document.getElementById('game-mode-switch').value;
+					d.db_switch = document.getElementById('game-mode-switch').dataset.value;
 				},
 				'type':'post',
 			},
@@ -130,7 +131,7 @@
 			'ajax':{
 				'url':'includes/fetch_changelog_data.inc.php',
 				'data': function (d) {
-					d.db_switch = document.getElementById('game-mode-switch').value;
+					d.db_switch = document.getElementById('game-mode-switch').dataset.value;
 				},
 				'type':'post',
 			},

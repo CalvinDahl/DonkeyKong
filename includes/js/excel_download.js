@@ -1,6 +1,6 @@
 //Download CSV
 	$(document).on('click','#DownloadCSV',function(event){
-		var database = document.getElementById('game-mode-switch').value;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url:"includes/Excel.inc.php",
 			data:{database:database},
