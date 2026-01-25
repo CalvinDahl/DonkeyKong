@@ -10,7 +10,7 @@
 		var row2 = '0';
 		Table.data.forEach((row) => {
 			if(row[0] != row2){
-				times.push(extractContent(row[4]));
+				times.push(extractContent(row[5]));
 			}
 			row2 = row[0];
 		});

@@ -19,7 +19,7 @@ function decode_data_level_id($level_id){
 	} else return $level_id;
 }
 
-function find_changelog_message(object $pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$video_link){
+function find_changelog_message(object $pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$kong_used,$video_link){
 	
 	$old_data = set_old_data($pdo,$current_id);
 	
@@ -43,6 +43,9 @@ function find_changelog_message(object $pdo,$current_id,$player,$nation,$level_i
 		}
 		if($old_data["date_set"] != $date_set){
 			$changes .= "Changed Date Set From " . $old_data['date_set'] . " to " . $date_set ."! ";
+		}
+		if($old_data["kong_used"] != $kong_used){
+			$changes .= "Changed Kong Used From " . $old_data['kong_used'] . " to " . $kong_used ."! ";
 		}
 		if($old_data["video_link"] != $video_link){
 			$changes .= "Changed Video Link From " . $old_data['video_link'] . " to " . $video_link ."! ";
@@ -85,6 +88,13 @@ function validate_data_date_set($date_set, $format = 'Y-m-d')
     $d = DateTime::createFromFormat($format, $date_set);
     // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
     return $d && strtolower($d->format($format)) === strtolower($date_set);
+}
+
+function validate_data_kong_used($kong_used){	
+	if($kong_used == "Funky" || $kong_used == "Cranky" || $kong_used == "Diddy" || $kong_used == "Dixie" || $kong_used == "Default"){
+		return true;
+	};
+	return false;
 }
 
 function validate_data_text_length($text,$size){	

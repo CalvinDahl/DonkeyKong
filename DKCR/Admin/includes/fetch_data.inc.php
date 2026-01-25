@@ -1,7 +1,13 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkcr_tm_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	require_once "fetch_data_contr.inc.php";
 	require_once "fetch_data_model.inc.php";
 	
@@ -11,7 +17,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		2 => 'level_id',
 		3 => 'level_time',
 		4 => 'date_set',
-		5 => 'video_link',
+		5 => 'kong_used',
+		6 => 'video_link',
 	);
 	
 	$count_all_rows = $pdo->query('select count(*) from upload')->fetchColumn();
@@ -38,11 +45,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$query .= " WHERE player like :search_value ";
 			$query .= "OR level_time like :search_value ";
 			$query .= "OR date_set like :search_value ";
+			$query .= "OR kong_used like :search_value ";
 		}
 	} else $filtered_rows = $count_all_rows;
 	
 	if(isset($_POST['order'])){
-		$column = white_list($columns[$_POST['order'][0]['column']],['player','nation','level_id','level_time','date_set','video_link'],"Invalid field name");
+		$column = white_list($columns[$_POST['order'][0]['column']],['player','nation','level_id','level_time','date_set','kong_used','video_link'],"Invalid field name");
 		$order = white_list($_POST['order'][0]['dir'],['asc','desc'],"Invalid ORDER BY direction");
 		if(($order == 'asc') && ($column == 'level_time' || $column == 'date_set')){
 			$order = 'desc';
@@ -79,6 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subarray[] = decode_data_level_id($row['level_id']);
 		$subarray[] = $row['level_time'];
 		$subarray[] = $row['date_set'];
+		$subarray[] = $row['kong_used'];
 		$subarray[] = $row['video_link'];
 		$subarray[] = '<a href="javascript:void(0);" data-id="'.$row['id'].'" class="btn btn-sm btn-info editBtn">Edit</a> <a 
 			href="javascript:void(0);" data-id="'.$row['id'].'" class="btn btn-sm btn-danger deleteBtn">Delete</a>';

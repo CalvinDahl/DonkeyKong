@@ -1,3 +1,19 @@
+/* General Characteristics */
+:root{
+	--white: #FFF;
+	--black: #000;
+	--darken: rgba(0,0,0,0.5);
+	--lightblue: #5D8AA8;
+	--darkblue: rgb(70, 130, 180);
+	--deepblue: rgb(28, 84, 255);
+	--lightbrown: #c9b490;
+	--darkbrown: #674421;
+	--darkorange: #644117;
+	--gold: rgb(255,215,0);
+	--purple: rgb(191,74,126);
+	--pink: rgb(350,100,203);
+	--red: rgb(225, 10, 8);
+}
 /*Drop Down Menu Styling*/
 .dropdownmenu {
 	width:100%;
@@ -34,3 +50,25 @@
 	color: #666699;
 }
 /*Drop Down Menu Styling*/
+
+/*Button Styling*/
+.game-mode-turbo {
+	margin: 0 1rem 1rem 1rem;
+	border: 1px solid var(--darkblue);
+}
+.game-mode-original {
+	margin: 0 1rem 1rem 1rem;
+	border: 1px solid var(--darkblue);
+}
+
+.active_button1{
+	background-color: var(--red) !important;
+	border: 1px solid var(--black) !important;
+	color: var(--gold) !important;
+}
+
+.active_button2{
+	background-color: var(--deepblue) !important;
+	border: 1px solid var(--black) !important;
+	color: var(--gold) !important;
+}

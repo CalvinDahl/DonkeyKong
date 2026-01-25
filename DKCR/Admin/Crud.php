@@ -26,9 +26,13 @@
 				<h1 class="text-center">Server Database Entries</h1>
 				<div class="row">
 					<div class="col-md-1"></div>
-					<div class="col-md-10">
+					<div class="col-md-10" id="game-mode-switch" data-value="dkcr_database">
 						<button type="button" style="margin-bottom: 20px;" class="btn btn-primary" data-bs-toggle="modal"
 						data-bs-target="#addDataEntry">Add New Entry</button>
+						<button id="game-mode-turbo" class="btn btn-secondary game-mode-turbo float-end" 
+						title="click to view turbo mode times">Turbo Mode</button>
+						<button id="game-mode-original" class="btn btn-secondary game-mode-original float-end" 
+						title="click to view original mode times" value="dkcr_database">Original Mode</button>
 					</div>
 				</div>
 				<div class="row">
@@ -41,6 +45,7 @@
 								<th>Level ID</th>
 								<th>Level Time</th>
 								<th>Date Set</th>
+								<th>Kong Used</th>
 								<th>Video Link / URL</th>
 								<th>Options</th>
 							</thead>
@@ -68,13 +73,23 @@
 		</div>
 	</div>
 	
+	<!-- URL Params -->
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+	</script>
 	
 	<!-- DataTables Styles & Plugins -->
 	<script src="./../../DataTables/datatables.min.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/plug-ins/2.1.7/dataRender/ellipsis.js" type="text/javascript"></script>
 	
+	<!-- Button Switch -->
+	<script src ="js/button_switch.js"></script>
+	
 	<!-- AJAX Server Calls -->
 	<script type="text/javascript">
+	
+		const db_switch = document.getElementById('game-mode-switch').dataset.value;
+		
 		//Upload Table Initialization
 		$('#searchTable').DataTable({
 			'serverSide':'true',
@@ -84,6 +99,9 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_data.inc.php',
+				'data': function (d) {
+					d.db_switch = document.getElementById('game-mode-switch').dataset.value;
+				},
 				'type':'post',
 			},
 			'fnCreatedRow':function(nRow,aData,iDataIndex)
@@ -95,8 +113,8 @@
 			//  //do whatever  
 			//},
 			'columnDefs':[
-				{'target':[5],'searchable':false, 'render': DataTable.render.ellipsis(15)},
-				{'target':[1,5,6],'orderable':false},
+				{'target':[6],'searchable':false, 'render': DataTable.render.ellipsis(15)},
+				{'target':[1,5,6,7],'orderable':false},
 				{'target':"_all",'className':'text-start'},
 			]
 		});
@@ -111,6 +129,9 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_changelog_data.inc.php',
+				'data': function (d) {
+					d.db_switch = document.getElementById('game-mode-switch').dataset.value;
+				},
 				'type':'post',
 			},
 			'fnCreateRow':function(nRow,aData,iDataIndex)
@@ -130,10 +151,11 @@
 			var level_id = $('#inputLevelID').val();
 			var level_time = $('#inputLevelTime').val();
 			var date_set = $('#inputDateSet').val();
+			var kong_used = $('#inputKongUsed').val();
 			var video_link = $('#inputVideoLink').val();
 			$.ajax({
 				url:"includes/newentry.inc.php",
-				data:{player:player,nation:nation,level_id:level_id,level_time:level_time,date_set:date_set,video_link:video_link},
+				data:{player:player,nation:nation,level_id:level_id,level_time:level_time,date_set:date_set,kong_used:kong_used,video_link:video_link,db_switch:db_switch},
 				type:'post',
 				success:function(data){
 					alert(data);
@@ -146,6 +168,7 @@
 						$('#inputLevelID').val('');
 						$('#inputLevelTime').val('');
 						$('#inputDateSet').val('');
+						$('#inputKongUsed').val('');
 						$('#inputVideoLink').val('');
 						$('#addDataEntry').modal('hide');
 						
@@ -163,7 +186,7 @@
 			$('#editDataEntry').modal('show');
 			$.ajax({
 				url:"includes/fetch_single_data.inc.php",
-				data:{id:id,database:database},
+				data:{id:id,database:database,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					var json = JSON.parse(data);
@@ -178,6 +201,8 @@
 					$('#editLevelTime').attr('placeholder',json.level_time);
 					$('#editDateSet').val(json.date_set);
 					$('#editDateSet').attr('placeholder',json.date_set);
+					$('#editKongUsed').val(json.kong_used);
+					$('#editKongUsed').attr('placeholder',json.kong_used);
 					$('#editVideoLink').val(json.video_link);
 					$('#editVideoLink').attr('placeholder',json.video_link);
 				}
@@ -187,7 +212,7 @@
 			var id = $(this).data('id');
 			$.ajax({
 				url:"includes/removeentry.inc.php",
-				data:{id:id},
+				data:{id:id,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					console.log(data);
@@ -210,11 +235,12 @@
 			var level_id = $('#editLevelID').val();
 			var level_time = $('#editLevelTime').val();
 			var date_set = $('#editDateSet').val();
+			var kong_used = $('#editKongUsed').val();
 			var video_link = $('#editVideoLink').val();
 			$.ajax({
 				url:"includes/update.inc.php",
 				data:{id:id,player:player,nation:nation,level_id:level_id,level_time:level_time,
-				date_set:date_set,video_link:video_link},
+				date_set:date_set,kong_used:kong_used,video_link:video_link,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					table= $('#changelogtable').DataTable();
@@ -241,7 +267,7 @@
 			var database = " changelog ";
 			$.ajax({
 				url:"includes/fetch_single_data.inc.php",
-				data:{id:id,database:database},
+				data:{id:id,database:database,db_switch:db_switch},
 				type:"post",
 				success:function(data){
 					var json = JSON.parse(data);
@@ -256,6 +282,8 @@
 					$('#infoLevelTime').attr('placeholder',(json.level_time));
 					$('#infoDateSet').val(json.date_set);
 					$('#infoDateSet').attr('placeholder',(json.date_set));
+					$('#infoKongUsed').val(json.kong_used);
+					$('#infoKongUsed').attr('placeholder',(json.kong_used));
 					$('#infoVideoLink').val(json.video_link);
 					$('#infoVideoLink').attr('placeholder',(json.video_link));
 					$('#infoDataEntry').modal('show');
@@ -268,7 +296,7 @@
 			if(confirm('Are you sure you want to deny these changes?')){
 				$.ajax({
 					url:"includes/approve_deny_changes.inc.php",
-					data:{id:id,approved:approved},
+					data:{id:id,approved:approved,db_switch:db_switch},
 					type:"post",
 					success:function(data){
 						var json = JSON.parse(data);
@@ -289,7 +317,7 @@
 			if(confirm('Are you sure you want to apply these changes?')){
 				$.ajax({
 					url:"includes/approve_deny_changes.inc.php",
-					data:{id:id,approved:approved},
+					data:{id:id,approved:approved,db_switch:db_switch},
 					type:"post",
 					success:function(data){
 						var json = JSON.parse(data);
@@ -355,6 +383,15 @@
 					<label for="inputDateSet" class="col-sm-3 col-form-label">Date Set</label>
 					<div class="col-sm-9">
 						<input type="date" class="form-control" id="inputDateSet" name="inputDateSet" Placeholder="mm/dd/yyyy">
+					</div>
+				</div>
+				<div class="mb-3 row">
+					<label for="inputKongUsed" class="col-sm-3 col-form-label">Kong Used</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="inputKongUsed" name="inputKongUsed" Placeholder="Diddy">
+						<div class="dropdownmenu">
+							<ul class="autocomplete-list" id="kong-list"></ul>
+						</div>
 					</div>
 				</div>
 				<div class="mb-3 row">
@@ -424,6 +461,15 @@
 					</div>
 				</div>
 				<div class="mb-3 row">
+					<label for="editKongUsed" class="col-sm-3 col-form-label">Kong Used</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="editKongUsed" name="editKongUsed" Placeholder="Diddy">
+						<div class="dropdownmenu">
+							<ul class="autocomplete-list" id="kong-list2"></ul>
+						</div>
+					</div>
+				</div>
+				<div class="mb-3 row">
 					<label for="editVideoLink" class="col-sm-3 col-form-label">Link / URL</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="editVideoLink" name="editVideoLink" Placeholder="https://youtube.com">
@@ -478,6 +524,12 @@
 					<label for="infoDateSet" class="col-sm-3 col-form-label">Date Set</label>
 					<div class="col-sm-9">
 						<input type="date" class="form-control" id="infoDateSet" name="infoDateSet" Placeholder="">
+					</div>
+				</div>
+				<div class="mb-3 row">
+					<label for="infoKongUsed" class="col-sm-3 col-form-label">Kong Used</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="infoKongUsed" name="infoKongUsed" Placeholder="">
 					</div>
 				</div>
 				<div class="mb-3 row">

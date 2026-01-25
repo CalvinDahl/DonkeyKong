@@ -2,7 +2,13 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['database'])){
+			if($_POST['database'] == "dkcr_tm_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "fetch_data_contr.inc.php";
 		
 		$count_all_rows = $pdo->query('select count(*) from upload')->fetchColumn();
@@ -28,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$subarray[] = $row['player'];
 			$subarray[] = decode_data_nation($row['nation']);
 			$subarray[] = $row['date_set'];
+			$subarray[] = decode_data_kong_used($row['kong_used']);
 			$subarray[] = decode_data_video_link($row['video_link'],$row['level_time']);
 			$data[]= $subarray;
 		}
