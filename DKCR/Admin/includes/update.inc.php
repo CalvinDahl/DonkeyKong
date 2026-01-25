@@ -6,10 +6,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$level_id = $_POST["level_id"];
 	$level_time = $_POST["level_time"];
 	$date_set = $_POST["date_set"];
+	$kong_used = $_POST["kong_used"];
 	$video_link = $_POST["video_link"];
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['db_switch'])){
+			if($_POST['db_switch'] == "dkcr_tm_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "update_model.inc.php";
 		require_once "update_contr.inc.php";
 		
@@ -38,14 +45,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$errors['status'] = "".$errors['status']."Invalid Date!   ";
 		}
 		
+		if(!validate_data_kong_used($kong_used)){
+			$errors['status'] = "".$errors['status']."Invalid Kong!   ";
+		}
+		
 		if(!validate_data_text_length($video_link,255)){
 			$errors['status'] = "".$errors['status']."Video Link Too Long!   ";
 		}
 		
 		if ($errors['status'] == ""){
-			$errors['message'] = find_changelog_message($pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$video_link);
+			$errors['message'] = find_changelog_message($pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$kong_used,$video_link);
 			if($errors['message'] != ""){
-				set_data($pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$video_link,$errors['message']);
+				set_data($pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$kong_used,$video_link,$errors['message']);
 			}else{
 				remove_entry($pdo,$current_id);
 			}

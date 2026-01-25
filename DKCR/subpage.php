@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="LevelStyles.css">
 </head>
 <body>
-	<div class="container-fluid overflow-hidden">
+	<div id="background-overlay" class="container-fluid overflow-hidden">
 		<div class="row" style="margin-top: 0.5rem">
 			<div class = "header">
 				<b>
@@ -176,35 +176,49 @@
 						</center>
 					</div>
 					<div class="background col-9 col-md-10">
-						<div class="layer-color-overlay"></div>
-						<h1 class="text-center" id="level-title">WR History</h1>
-						<img src="includes/images/Border.webp" class="Border">
-						<div class = "background-content row justify-content-center">
-							<h2 class="text-center">Current World Record:</h2>
-							<span class="background-table">
-								<table id="current-record" class="table table-striped">
-									<thead>
-										<th>Date Set</th>
-										<th>Name</th>
-										<th>Nation</th>
-										<th>Time / Video</th>
-									</thead>
-									<tbody></tbody>
-								</table>
-							</span>
-							<h2 class="text-center">History:</h2>
-							<span class="background-table">
-								<table id="leaderboard" class="table table-striped">
-									<thead>
-										<th>Date Set</th>
-										<th>Name</th>
-										<th>Nation</th>
-										<th>Time / Video</th>
-									</thead>
-									<tbody></tbody>
-								</table>
-								<span class = "cover page"></span>
-							</span>
+						<div class = "row">
+							<div id="game-mode-switch" data-value="dkcr_tm_database">
+								<button id="game-mode-turbo" class="btn btn-secondary game-mode-turbo float-end" 
+								title="click to view turbo mode times">Turbo Mode</button>
+								<button id="game-mode-original" class="btn btn-secondary game-mode-original float-end" 
+								title="click to view original mode times" value="dkcr_database">Original Mode</button>
+							</div>
+						</div>
+						<div class= "row">
+							<div class="background">
+								<div class="layer-color-overlay"></div>
+								<h1 class="text-center" id="level-title">WR History</h1>
+								<img src="includes/images/Border.png" class="Border">
+								<div class = "background-content row justify-content-center">
+									<h2 class="text-center">Current World Record:</h2>
+									<span class="background-table">
+										<table id="current-record" class="table table-striped">
+											<thead>
+												<th>Date Set</th>
+												<th>Name</th>
+												<th>Nation</th>
+												<th></th>
+												<th>Time / Video</th>
+											</thead>
+											<tbody></tbody>
+										</table>
+									</span>
+									<h2 class="text-center">History:</h2>
+									<span class="background-table">
+										<table id="leaderboard" class="table table-striped">
+											<thead>
+												<th>Date Set</th>
+												<th>Name</th>
+												<th>Nation</th>
+												<th></th>
+												<th>Time / Video</th>
+											</thead>
+											<tbody></tbody>
+										</table>
+										<span class = "cover page"></span>
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -246,17 +260,8 @@
 		</div>
 	</div>
 	
-	<!-- DataTables Styles & Plugins -->
-	<script src="../DataTables/datatables.min.js" type="text/javascript"></script>
-	
-	<!-- Footer Data Table Function -->
-	<script type="text/javascript" src ="includes/js/footer_table.js"></script>
-	
-	<!-- Excel Download Server Call -->
-	<script type="text/javascript" src ="includes/js/excel_download.js"></script>
-	
-	<!-- Main Data Table Server Call -->
-	<script>
+	<!-- Url Params -->
+	<script type="text/javascript">
 		//Level name apply
 		const urlParams = new URLSearchParams(window.location.search);
 		const level_id = urlParams.get('id');
@@ -266,6 +271,22 @@
 
 			document.getElementById('level-title').innerHTML = level_name;
 		};
+	</script>
+	
+	<!-- DataTables Styles & Plugins -->
+	<script src="../DataTables/datatables.min.js" type="text/javascript"></script>
+	
+	<!-- Footer Data Table Function -->
+	<script type="text/javascript" src ="includes/js/footer_table.js"></script>
+	
+	<!-- Excel Download Server Call -->
+	<script type="text/javascript" src ="includes/js/excel_download.js"></script>
+	
+	<!-- Button To Switch From Original To Funky Mode -->
+	<script type="text/javascript" src ="includes/js/button_switch.js"></script>
+	
+	<!-- Main Data Table Server Call -->
+	<script>
 		//Upload Table Initialization
 		$('#leaderboard').DataTable({
 			'serverSide':true,
@@ -280,7 +301,10 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_level_data.inc.php',
-				'data': {level_id:level_id},
+				'data': function (d) {
+					d.database = document.getElementById('game-mode-switch').dataset.value;
+					d.level_id = level_id;
+				},
 				'type':'post',
 			},
 			'fnCreatedRow':function(nRow,aData,iDataIndex)
@@ -297,7 +321,8 @@
 				{'target':"_all",'searchable':false,'orderable':false,'className':'text-center align-middle'},
 				{'target':0,'width':'15%'},
 				{'target':2,'width':'3%'},
-				{'target':3,'width':'15%'},
+				{'target':3,'width':'3%'},
+				{'target':4,'width':'15%'},
 			]
 		});
 		function MergeGridCells(TableID,rCols) {

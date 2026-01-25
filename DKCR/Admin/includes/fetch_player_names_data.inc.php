@@ -1,5 +1,11 @@
 <?php
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkcr_tm_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	$query = "SELECT DISTINCT player FROM upload;";
 	$stmt = $pdo->prepare($query); 
 	$stmt->execute();

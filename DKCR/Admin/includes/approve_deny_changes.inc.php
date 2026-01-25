@@ -2,15 +2,21 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$id = $_POST["id"];
 	$approved = $_POST["approved"];
-	require_once "dbh.inc.php";
+	if(isset($_POST['db_switch'])){
+		if($_POST['db_switch'] == "dkcr_tm_database"){
+			require_once "dbh2.inc.php";
+		}else{
+			require_once "dbh.inc.php";
+		}
+	}
 	require_once "approve_deny_changes_model.inc.php";
 	require_once "approve_deny_changes_contr.inc.php";
 	
 	$data = get_changelog_data($pdo,$id);
 	
-	if($approved == "true"){
+	if($approved){
 		decode_changes($pdo,$data['id'],$data['player'],$data['nation'],$data['level_id'],$data['level_time'],
-			$data['date_set'],$data['video_link'],$data['change_log']);
+			$data['date_set'],$data['kong_used'],$data['video_link'],$data['change_log']);
 	}
 	remove_changelog_data($pdo,$id);
 	

@@ -36,9 +36,10 @@
 	$(document).on('click','.datebtn',function(event){
 		var check_date = $('#inputDate2').val();
 		var start_date = document.getElementById('inputDate2').min;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_rankingpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id,start_date:start_date},
+			data:{check_date:check_date,level_id:level_id,start_date:start_date,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -52,9 +53,10 @@
 	$('#Player_rankings').one('click',function(event){
 		var check_date = $('#inputDate2').val();
 		var start_date = document.getElementById('inputDate2').min;
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_rankingpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id,start_date:start_date},
+			data:{check_date:check_date,level_id:level_id,start_date:start_date,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -64,6 +66,13 @@
 			}
 		})
 	});
+	//SET MINIMUM DATE FOR BUTTON SWITCH
+	let minimum_date2 = document.getElementById('inputDate2')
+	if (gamemode_check =="turbo"){
+		minimum_date2.min = '2026-01-20';
+	} else{
+		minimum_date2.min = '2025-01-16';
+	}
 	
 </script>
 

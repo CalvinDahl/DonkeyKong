@@ -5,11 +5,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$level_id = $_POST["level_id"];
 	$level_time = $_POST["level_time"];
 	$date_set = $_POST["date_set"];
+	$kong_used = $_POST["kong_used"];
 	$video_link = $_POST["video_link"];
 	$change_log = "Added New Entry!";
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['db_switch'])){
+			if($_POST['db_switch'] == "dkcr_tm_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		require_once "newentry_contr.inc.php";
 		
 		$errors['status'] = "";
@@ -36,13 +43,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$errors['status'] = "".$errors['status']."Invalid Date!   ";
 		}
 		
+		if(!validate_data_kong_used($kong_used)){
+			$errors['status'] = "".$errors['status']."Invalid Kong!   ";
+		}
+		
 		if(!validate_data_text_length($video_link,255)){
 			$errors['status'] = "".$errors['status']."Video Link Too Long!   ";
 		}
 		
 		if(!array_filter($errors)){
-			$query = 'INSERT INTO changelog (player,nation,level_id,level_time,date_set,video_link,change_log) VALUES
-				(:player,:nation,:level_id,:level_time,:date_set,:video_link,:change_log);';
+			$query = 'INSERT INTO changelog (player,nation,level_id,level_time,date_set,kong_used,video_link,change_log) VALUES
+				(:player,:nation,:level_id,:level_time,:date_set,:kong_used,:video_link,:change_log);';
 			
 			$stmt = $pdo->prepare($query);
 			
@@ -51,24 +62,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->bindParam(":level_id", $level_id);
 			$stmt->bindParam(":level_time", $level_time);
 			$stmt->bindParam(":date_set", $date_set);
+			$stmt->bindParam(":kong_used", $kong_used);
 			$stmt->bindParam(":video_link", $video_link);
 			$stmt->bindParam(":change_log", $change_log);
 			$stmt->execute();
 			
 			$errors['status'] = "success";
-			
-			require_once 'config_session.inc.php';
-			if(isset($_SESSION['user_id'])){
-				$username = $_SESSION['user_id'];
-				$query = 'UPDATE users SET Contributions = Contributions + 1 WHERE username = :username;';
-				$stmt = $pdo->prepare($query);
-				
-				$stmt->bindParam(":username", $username);
-				$stmt->execute();
-			}
 		}
-		$pdo = null;
-		$stmt = null;
+		require_once 'config_session.inc.php';
+		if(isset($_SESSION['user_id'])){
+			if($_POST['db_switch'] == "dkcr_tm_database"){
+				$pdo = null;
+				$stmt = null;
+				require_once "dbh.inc.php";
+			}
+			$username = $_SESSION['user_id'];
+			$query = 'UPDATE users SET Contributions = Contributions + 1 WHERE username = :username;';
+			$stmt = $pdo->prepare($query);
+			
+			$stmt->bindParam(":username", $username);
+			$stmt->execute();
+		}
 		echo json_encode($errors);
 		
 	} catch (PDOException $e){

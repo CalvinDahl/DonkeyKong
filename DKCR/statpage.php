@@ -17,6 +17,7 @@
 			{ "data": "level_id" },
 			{ "data": "player" },
 			{ "data": "nation" },
+			{ "data": "kong_used" },
 			{ "data": "level_time" },
 			{ "data": "date_set" },
 			{ "data": "difference" },
@@ -27,19 +28,21 @@
 			{'target':0,'width':'5%'},
 			{'target':1,'width':'10%'},
 			{'target':3,'width':'8%'},
-			{'target':4,'width':'16%'},
+			{'target':4,'width':'5%'},
 			{'target':5,'width':'16%'},
-			{'target':6,'width':'8%'},
-			{'target':7,'width':'5%'},
+			{'target':6,'width':'16%'},
+			{'target':7,'width':'8%'},
+			{'target':8,'width':'5%'},
 		],
 		'rowCallback': function (row, data) {}
 	});
 	//CHANGE DATE -> LOAD DATA
 	$(document).on('click','.datebtn',function(event){
 		var check_date = $('#inputDate1').val();
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id},
+			data:{check_date:check_date,level_id:level_id,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -52,9 +55,10 @@
 	//ONE TIME ON CLICK -> LOAD DATA
 	$('#WR_Analytics').one('click',function(event){
 		var check_date = $('#inputDate1').val();
+		var database = document.getElementById('game-mode-switch').dataset.value;
 		$.ajax({
 			url: 'includes/fetch_statpage_data.inc.php',
-			data:{check_date:check_date,level_id:level_id},
+			data:{check_date:check_date,level_id:level_id,database:database},
 			type: "post",
 			success: function(data){ // RECEIVE DATA
 				var json = JSON.parse(data);
@@ -64,6 +68,13 @@
 			}
 		})
 	});
+	//SET MINIMUM DATE FOR BUTTON SWITCH
+	let minimum_date1 = document.getElementById('inputDate1')
+	if (gamemode_check =="turbo"){
+		minimum_date1.min = '2026-01-20';
+	} else{
+		minimum_date1.min = '2025-01-16';
+	}
 	
 </script>
 
@@ -92,6 +103,7 @@
 							<th>Level</th>
 							<th>Name</th>
 							<th>Nation</th>
+							<th></th>
 							<th>Time / Video</th>
 							<th>Date Set</th>
 							<th>Duration</th>

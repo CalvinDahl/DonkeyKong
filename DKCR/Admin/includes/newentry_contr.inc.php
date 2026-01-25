@@ -36,6 +36,13 @@ function validate_data_date_set($date_set, $format = 'Y-m-d')
     return $d && strtolower($d->format($format)) === strtolower($date_set);
 }
 
+function validate_data_kong_used($kong_used){	
+	if($kong_used == "Funky" || $kong_used == "Cranky" || $kong_used == "Diddy" || $kong_used == "Dixie" || $kong_used == "Default"){
+		return true;
+	};
+	return false;
+}
+
 function validate_data_text_length($text,$size){	
 	if(strlen($text) <= $size){
 		return true;

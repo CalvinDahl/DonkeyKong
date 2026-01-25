@@ -7,10 +7,11 @@
 		'4-1','4-2','4-3','4-4','4-5','4-K','4-Boss',
 		'5-1','5-2','5-3','5-4','5-5','5-6','5-7','5-8','5-K','5-Boss',
 		'6-1','6-2','6-3','6-4','6-5','6-6','6-7','6-8','6-K','6-Boss',
-		'7-1','7-2','7-3','7-4','7-5','7-6','7-7','7-K','7-Boss',
+		'7-1','7-2','7-3','7-4','7-5','7-6','7-7','7-R','7-K','7-Boss',
 		'8-1','8-2','8-3','8-4','8-5','8-6','8-7','8-K','8-Boss',
 		'9-1','9-2','9-3','9-4','9-5','9-6','9-7','9-8','9-9'];
 	let countries = [];
+	let kongs = ["Diddy","Dixie","Default"];
 	
 	const playerListElement = document.querySelector('#player-list');
 	const playerInputElement = document.querySelector('#inputPlayer');
@@ -20,6 +21,9 @@
 	
 	const levelID_ListElement = document.querySelector('#levelID-list');
 	const levelID_InputElement = document.querySelector('#inputLevelID');
+	
+	const kong_ListElement = document.querySelector('#kong-list');
+	const kong_InputElement = document.querySelector('#inputKongUsed');
 	
 	const e1 = document.querySelector('#addNewEntry');
 	
@@ -34,12 +38,19 @@
 	const levelID_ListElement2 = document.querySelector('#levelID-list2');
 	const levelID_InputElement2 = document.querySelector('#editLevelID');
 	
+	const kong_ListElement2 = document.querySelector('#kong-list2');
+	const kong_InputElement2 = document.querySelector('#editKongUsed');
+	
 	const e2 = document.querySelector('#editNewEntry');
 	
 //Functions
 	function fetchNames(){
-		fetch('./includes/fetch_player_names_data.inc.php')
-		.then(res => res.json())
+		var data = new FormData();
+		data.append('db_switch',db_switch);
+		fetch('./includes/fetch_player_names_data.inc.php',{
+			method: 'POST',
+			body: data,
+		}).then(res => res.json())
 		.then(data => {
 			player_names = data.map((filObj) => filObj.player);
 		}).catch(err => {
@@ -78,6 +89,8 @@
 	countryListElement.style.display = "none";
 	levelID_ListElement2.style.display = "none";
 	levelID_ListElement.style.display = "none";
+	kong_ListElement2.style.display = "none";
+	kong_ListElement.style.display = "none";
 	playerListElement2.style.display = "none";
 	playerListElement.style.display = "none";
 
@@ -101,7 +114,11 @@
 		let filteredData = filterData(level_ids,levelID_InputElement.value);
 		loadData(filteredData,levelID_ListElement,"level-item");
 	})
-	
+//Kong Input Listener	
+	kong_InputElement.addEventListener("input", function(){
+		let filteredData = filterData(kongs,kong_InputElement.value);
+		loadData(filteredData,kong_ListElement,"kong-item");
+	})
 	
 //Click anywhere on modal
 	e1.addEventListener("click", (e) => {
@@ -144,6 +161,19 @@
 			loadData([],levelID_ListElement,"level-item");
 			levelID_ListElement.style.display = "none";
 		}
+		//KONG USED
+		if(e.target.id === "inputKongUsed"){
+			let filteredData = filterData(kongs,kong_InputElement.value);
+			loadData(filteredData,kong_ListElement,"kong-item");
+			kong_ListElement.style.display = "block";
+		}else if(e.target.classList.contains("kong-item") === true){
+			kong_InputElement.value = e.target.innerHTML;
+			loadData([],kong_ListElement,"kong-item");
+			kong_ListElement.style.display = "none";
+		}else{
+			loadData([],kong_ListElement,"kong-item");
+			kong_ListElement.style.display = "none";
+		}
 	});
 
 //////////  EDIT MODAL LISTENERS  ///////////
@@ -162,6 +192,11 @@
 	levelID_InputElement2.addEventListener("input", function(){
 		let filteredData = filterData(level_ids,levelID_InputElement2.value);
 		loadData(filteredData,levelID_ListElement2,"level-item");
+	})
+//Kong Input Listener	
+	kong_InputElement2.addEventListener("input", function(){
+		let filteredData = filterData(kongs,kong_InputElement2.value);
+		loadData(filteredData,kong_ListElement2,"kong-item");
 	})
 	
 	
@@ -205,6 +240,19 @@
 		}else{
 			loadData([],levelID_ListElement2,"level-item");
 			levelID_ListElement2.style.display = "none";
+		}
+		//KONG USED
+		if(e.target.id === "editKongUsed"){
+			let filteredData = filterData(kongs,kong_InputElement2.value);
+			loadData(filteredData,kong_ListElement2,"kong-item");
+			kong_ListElement2.style.display = "block";
+		}else if(e.target.classList.contains("kong-item") === true){
+			kong_InputElement2.value = e.target.innerHTML;
+			loadData([],kong_ListElement2,"kong-item");
+			kong_ListElement2.style.display = "none";
+		}else{
+			loadData([],kong_ListElement2,"kong-item");
+			kong_ListElement2.style.display = "none";
 		}
 	});
 	

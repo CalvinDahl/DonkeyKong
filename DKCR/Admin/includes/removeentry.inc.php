@@ -5,7 +5,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$change_log = "Remove Entry!";
 	
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['db_switch'])){
+			if($_POST['db_switch'] == "dkcr_tm_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		
 		function get_changelog_data($pdo,$id){
 			$query = " SELECT * FROM upload WHERE id = :id;";
@@ -17,9 +23,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $results[0];
 		}
-		function set_data(object $pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$video_link,$change_log){
-			$query = 'REPLACE INTO changelog (id,player,nation,level_id,level_time,date_set,video_link,change_log) VALUES
-				(:current_id,:player,:nation,:level_id,:level_time,:date_set,:video_link,:change_log);';
+		function set_data(object $pdo,$current_id,$player,$nation,$level_id,$level_time,$date_set,$kong_used,$video_link,$change_log){
+			$query = 'REPLACE INTO changelog (id,player,nation,level_id,level_time,date_set,kong_used,video_link,change_log) VALUES
+				(:current_id,:player,:nation,:level_id,:level_time,:date_set,:kong_used,:video_link,:change_log);';
 				
 			$stmt = $pdo->prepare($query);
 			
@@ -29,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->bindParam(":level_id", $level_id);
 			$stmt->bindParam(":level_time", $level_time);
 			$stmt->bindParam(":date_set", $date_set);
+			$stmt->bindParam(":kong_used", $kong_used);
 			$stmt->bindParam(":video_link", $video_link);
 			$stmt->bindParam(":change_log", $change_log);
 			
@@ -36,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		}
 		
 		$values = get_changelog_data($pdo,$current_id);
-		set_data($pdo,$current_id,$values["player"],$values["nation"],$values["level_id"],$values["level_time"],$values["date_set"],$values["video_link"],$change_log);
+		set_data($pdo,$current_id,$values["player"],$values["nation"],$values["level_id"],$values["level_time"],$values["date_set"],$values["kong_used"],$values["video_link"],$change_log);
 		
 		$pdo = null;
 		$stmt = null;

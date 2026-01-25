@@ -1,7 +1,13 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	try {
-		require_once "dbh.inc.php";
+		if(isset($_POST['database'])){
+			if($_POST['database'] == "dkcr_mm_database"){
+				require_once "dbh2.inc.php";
+			}else{
+				require_once "dbh.inc.php";
+			}
+		}
 		$query = "SELECT * FROM upload;";
 		$stmt = $pdo->prepare($query); 
 		$stmt->execute();

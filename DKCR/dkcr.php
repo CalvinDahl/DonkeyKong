@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-	<div class="container-fluid overflow-hidden">
+	<div id="background-overlay" class="container-fluid overflow-hidden">
 		<div class="row" style="margin-top: 0.5rem">
 			<div class = "header">
 				<b>
@@ -176,25 +176,36 @@
 						</center>
 					</div>
 					
-					<div class="background col-9 col-md-10">
-						<h1 class="text-center">Current World Records</h1>
-						<div class = "row justify-content-center">
-							<span class="background-table">
-								<table id="leaderboard" class="table table-striped">
-									<thead>
-										<th>Level</th>
-										<th>Name</th>
-										<th>Nation</th>
-										<th>Date Set</th>
-										<th>Time / Video</th>
-									</thead>
-									<tbody></tbody>
-								</table>
-								<ul class="Leaderboard-Time">
-									<li>Total ~</li>
-									<li id="total_time">00:00:00.00</li>
-								</ul>
-							</span>
+					<div class="col-9 col-md-10">
+						<div class = "row">
+							<div id="game-mode-switch" data-value="dkcr_tm_database">
+								<button id="game-mode-turbo" class="btn btn-secondary game-mode-turbo float-end" 
+								title="click to view turbo mode times">Turbo Mode</button>
+								<button id="game-mode-original" class="btn btn-secondary game-mode-original float-end" 
+								title="click to view original mode times" value="dkcr_database">Original Mode</button>
+							</div>
+						</div>
+						<div class="background">
+							<h1 class="text-center">Current World Records</h1>
+							<div class = "row justify-content-center">
+								<span class="background-table">
+									<table id="leaderboard" class="table table-striped">
+										<thead>
+											<th>Level</th>
+											<th>Name</th>
+											<th>Nation</th>
+											<th>Date Set</th>
+											<th>Barrel</th>
+											<th>Time / Video</th>
+										</thead>
+										<tbody></tbody>
+									</table>
+									<ul class="Leaderboard-Time">
+										<li>Total ~</li>
+										<li id="total_time">00:00:00.00</li>
+									</ul>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -236,6 +247,11 @@
 		</div>
 	</div>
 	
+	<!-- Url Params -->
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+	</script>
+	
 	<!-- DataTables Styles & Plugins -->
 	<script src="./../DataTables/datatables.min.js" type="text/javascript"></script>
 	
@@ -247,6 +263,9 @@
 	
 	<!-- Excel Download Server Call -->
 	<script type="text/javascript" src ="includes/js/excel_download.js"></script>
+	
+	<!-- Button To Switch From Original To Turbo Mode -->
+	<script type="text/javascript" src ="includes/js/button_switch.js"></script>
 	
 	<!-- Main Data Table Server Call -->
 	<script type="text/javascript">
@@ -261,6 +280,9 @@
 			'order':[],
 			'ajax':{
 				'url':'includes/fetch_data.inc.php',
+				'data': function (d) {
+					d.database = document.getElementById('game-mode-switch').dataset.value;
+				},
 				'type':'post',
 			},
 			'fnCreatedRow':function(nRow,aData,iDataIndex)
@@ -279,6 +301,7 @@
 				{'target':2,'width':'10%'},
 				{'target':3,'width':'15%'},
 				{'target':4,'width':'10%'},
+				{'target':5,'width':'15%'},
 			]
 		});
 		function MergeGridCells(TableID,rCols) {
