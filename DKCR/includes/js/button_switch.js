@@ -23,7 +23,7 @@
 	});
 //Apply Styles	
 	if (gamemode_check =="original"){
-		gamemode_query.dataset.value = "dkcr_tm_database";
+		gamemode_query.dataset.value = "dkcr_database";
 		
 		background_styles.classList.add('active2');
 		background_styles.classList.remove('active1');
@@ -32,7 +32,7 @@
 		button_styles_turbo.classList.remove('active_button1');
 		
 	} else if (gamemode_check =="turbo"){
-		gamemode_query.dataset.value = "dkcr_database";
+		gamemode_query.dataset.value = "dkcr_tm_database";
 		
 		background_styles.classList.add('active1');
 		background_styles.classList.remove('active2');
