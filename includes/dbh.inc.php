@@ -1,11 +1,7 @@
 <?php
-
-	$dbhost = 'localhost';
-	$dbname = 'dkctf_database';
-	
-	$dsn = 'mysql:host=localhost;dbname=dkctf_database';
-	$dbusername = 'mysql.infoschema';
-	$dbpassword = 'xkcs*IAUP-X6US4w';
+	$dsn = "mysql:host=" . getenv('DB_HOST') . ";dbname=" . getenv('DB_NAME1');
+	$dbusername = getenv('DB_USER2');
+	$dbpassword = getenv('DB_PASS2');
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
