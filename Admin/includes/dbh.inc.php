@@ -1,8 +1,7 @@
 <?php
-
-	$dsn = 'mysql:host=localhost;dbname=dkctf_database';
-	$dbusername = "USERNAME_REMOVED";
-	$dbpassword = "PASSWORD_REMOVED";
+	$dsn = "mysql:host=" . getenv('DB_HOST') . ";dbname=" . getenv('DB_NAME1');
+	$dbusername = getenv('DB_USER');
+	$dbpassword = getenv('DB_PASS');
 	
 	try {
 		$pdo = new PDO($dsn, $dbusername, $dbpassword);
