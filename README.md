@@ -5,4 +5,4 @@ Website that tracks world records for Donkey Kong Country Tropical Freeze and Co
 ## Features
 - Current and historical world records
 - Player rankings
-- Records Statitistics
+- Records statitistics
