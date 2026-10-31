@@ -91,7 +91,7 @@
 								<li><a class = "subpage-link" href="subpage.php?id=404&name=Irate Eight">4-4: Irate Eight</a></li>
 								<li><a class = "subpage-link" href="subpage.php?id=405&name=Sea Stack Attack">4-5: Sea Stack Attack</a></li>
 								<li><a class = "subpage-link" href="subpage.php?id=406&name=Current Capers">4-6: Current Capers</a></li>
-								<li><a class = "subpage-link" vhref="subpage.php?id=407&name=Rockin' Relics">4-A: Rockin' Relics</a></li>
+								<li><a class = "subpage-link" href="subpage.php?id=407&name=Rockin' Relics">4-A: Rockin' Relics</a></li>
 								<li><a class = "subpage-link" href="subpage.php?id=408&name=Shoal Atoll">4-B: Shoal Atoll</a></li>
 								<li><a class = "subpage-link" href="subpage.php?id=409&name=Spinning Spines">4-K: Spinning Spines</a></li>
 								<li><a class = "subpage-link" href="subpage.php?id=410&name=Fugu Face-Off">4-Boss: Fugu Face-Off</a></li>

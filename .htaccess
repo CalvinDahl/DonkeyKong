@@ -1,17 +1,21 @@
-#prevent User access Directories
+# Disable directory browsing
 Options -Indexes
 
-#enable mod_rewrite
+# Enable rewriting
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} ^www\.dkctfwrs\.com$
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-RewriteRule ^/?$ "https\:\/\/dkctfwrs\.com\/" [R=301,L]
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.dkwrs\.com$ [NC]
+RewriteRule ^(.*)$ https://dkwrs.com/$1 [L,R=301]
 
+# Hide .php extension
 RewriteCond %{REQUEST_FILENAME} !-d
-
 RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
 
-RewriteRule ^Admin/([0-9]+)/([0-9a-zA-Z_-]+) Login.php?id=$1$name=$2
-
+# Custom 404 page
 ErrorDocument 404 /Tools/404.html

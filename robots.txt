@@ -1,6 +1,7 @@
 User-agent: *
-Disallow: /DKCR/Admin/Crud.php
-Disallow: /Admin/Crud.php
+Disallow: /Admin/
+Disallow: /DKCR/Admin/
+Disallow: /includes/
+Disallow: /Tools/
 
-
-Sitemap: https://dkctfwrs.com/sitemap.xml
+Sitemap: https://dkwrs.com/sitemap.xml
